@@ -30,6 +30,5 @@ nb-configuration.xml
 
 # IDEA
 /.idea/
-*.iml
 *.ipr
 *.iws
