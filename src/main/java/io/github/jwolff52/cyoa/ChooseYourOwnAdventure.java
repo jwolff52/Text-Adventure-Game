@@ -115,7 +115,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 			break;
 		}
 		if (newGameInfo[5].startsWith("1")) {
-			Main.getCommandPrompt().appendLine("I am a peacefull traveler, seeking to become a great warrior!");
+			Main.getCommandPrompt().appendLine("I am a peaceful traveler, seeking to become a great warrior!");
 			sleep(2000);
 		} else if (newGameInfo[5].endsWith("1")) {
 			Main.getCommandPrompt().appendLine("Move out of the way grandpa, I have got things to do!");
@@ -144,7 +144,6 @@ public class ChooseYourOwnAdventure implements Runnable {
 						"I have heard many a tale of %s, welcome to Fenhelm",
 						newGameInfo[1]));
 		sleep(1000, 3000);
-
 		// Class
 		do {
 			Main.getCommandPrompt().clearScreen();
