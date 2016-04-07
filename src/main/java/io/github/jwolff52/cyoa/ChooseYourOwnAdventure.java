@@ -3,7 +3,7 @@ package io.github.jwolff52.cyoa;
 import io.github.jwolff52.cyoa.entities.Player;
 import io.github.jwolff52.cyoa.res.R;
 import io.github.jwolff52.cyoa.util.CLogger;
-import io.github.jwolff52.cyoa.util.SaveUtils;
+import io.github.jwolff52.cyoa.util.SaveUtil;
 import io.github.jwolff52.cyoa.util.TFileReader;
 
 import java.io.BufferedReader;
@@ -28,13 +28,12 @@ public class ChooseYourOwnAdventure implements Runnable {
 			chooseSave();
 			Main.getCommandPrompt().setInputAllowed(true);
 			waitForInput();
-		} while (!SaveUtils.chooseSave());
+		} while (!SaveUtil.chooseSave());
 		Main.getCommandPrompt().setInputAllowed(false);
 	}
 
 	public void titleScreen() {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				R.getResourceAsStream("logo.txt")));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("logo.txt")));
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {
@@ -50,14 +49,14 @@ public class ChooseYourOwnAdventure implements Runnable {
 	public void chooseSave() {
 		Main.getCommandPrompt().appendLine("Choose a save");
 		Main.getCommandPrompt().appendLine("\n");
-		Main.getCommandPrompt().appendLines(
-				SaveUtils.getFormattedFileListAsArray());
+		Main.getCommandPrompt().appendLines(SaveUtil.getFormattedFileListAsArray());
+		Main.getCommandPrompt().appendLine("\n");
+		Main.getCommandPrompt().appendLine("Type \"?\" or \"help\" at any time to view the help screen!", "");
 	}
 
 	public void prologue() {
 		Main.getCommandPrompt().clearScreen();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(
-				R.getResourceAsStream("prologue.txt")));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("prologue.txt")));
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {
@@ -79,29 +78,30 @@ public class ChooseYourOwnAdventure implements Runnable {
 			Main.getCommandPrompt().setInputAllowed(true);
 			Main.getCommandPrompt().setScreenLocked(false);
 			waitForInput();
-		} while ((newGameInfo[0] = Main.getCommandPrompt().getLastInput())
-				.equals("\n"));
+		} while (!isValidInput(newGameInfo[0] = Main.getCommandPrompt().getLastInput(), "alphanumeric"));
 		Main.getCommandPrompt().setInputAllowed(false);
-		Main.getCommandPrompt().appendLine(
-				String.format("It is a pleasure to meet you %s.",
-						newGameInfo[0]));
+		Main.getCommandPrompt().appendLine(String.format("The Old Man: It is a pleasure to meet you %s.", newGameInfo[0]));
 		sleep(1000, 3000);
 
-		// Alignment
+		// AlignmentType
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine("What you doing in my barn?");
+			Main.getCommandPrompt().appendLine("The Old Man: What are you doing in my barn?");
+			sleep(200, 500);
+			Main.getCommandPrompt().appendLine("");
+			Main.getCommandPrompt().appendLine("How would you like to respond?");
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Friendly");
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("2: Evil");
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("3: Sarcastic");
+			Main.getCommandPrompt().appendLine("\n");
+			Main.getCommandPrompt().appendLine(String.format("If you would like to learn more about conversation in %s type \"?\"", R.GAME_NAME));
 			Main.getCommandPrompt().setInputAllowed(true);
 			Main.getCommandPrompt().setScreenLocked(false);
 			waitForInput();
-		} while ((newGameInfo[5] = Main.getCommandPrompt().getLastInput())
-				.equals("\n"));
+		} while (!isValidInput(newGameInfo[5] = Main.getCommandPrompt().getLastInput(), "number", 1, 3));
 		Main.getCommandPrompt().setInputAllowed(false);
 		switch (newGameInfo[5]) {
 		case "1":
@@ -124,31 +124,23 @@ public class ChooseYourOwnAdventure implements Runnable {
 			Main.getCommandPrompt().appendLine("What difference does it make to you?");
 			sleep(2000);
 		}
-		Main.getCommandPrompt().appendLine(
-				String.format("It is a pleasure to meet you %s.",
-						newGameInfo[0]));
+		Main.getCommandPrompt().appendLine(String.format("It is a pleasure to meet you %s.", newGameInfo[0]));
 		sleep(1000, 3000);
 
 		// Home Town
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine(
-					"From where dost thou hail from?");
+			Main.getCommandPrompt().appendLine("From where dost thou hail from?");
 			Main.getCommandPrompt().setInputAllowed(true);
 			waitForInput();
-		} while ((newGameInfo[1] = Main.getCommandPrompt().getLastInput())
-				.equals("\n"));
+		} while (!isValidInput(newGameInfo[1] = Main.getCommandPrompt().getLastInput(), "alphanumeric"));
 		Main.getCommandPrompt().setInputAllowed(false);
-		Main.getCommandPrompt().appendLine(
-				String.format(
-						"I have heard many a tale of %s, welcome to Fenhelm",
-						newGameInfo[1]));
+		Main.getCommandPrompt().appendLine(String.format("I have heard many a tale of %s, welcome to Fenhelm", newGameInfo[1]));
 		sleep(1000, 3000);
 		// Class
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine(
-					"Which class of warrior are you?");
+			Main.getCommandPrompt().appendLine("Which class of warrior are you?");
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Fighter");
 			sleep(200, 500);
@@ -160,8 +152,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 			Main.getCommandPrompt().setInputAllowed(true);
 			Main.getCommandPrompt().setScreenLocked(true);
 			waitForInput();
-		} while (!isValidInput((newGameInfo[2] = Main.getCommandPrompt()
-				.getLastInput()), "number", 1, 4));
+		} while (!isValidInput((newGameInfo[2] = Main.getCommandPrompt().getLastInput()), "number", 1, 4));
 		Main.getCommandPrompt().setInputAllowed(false);
 		switch (newGameInfo[2]) {
 		case "1":
@@ -177,30 +168,20 @@ public class ChooseYourOwnAdventure implements Runnable {
 			newGameInfo[2] = "Rogue";
 			break;
 		}
-		Main.getCommandPrompt()
-				.appendLine(
-						String.format(
-								"Good, we are in dire need of a%s %s",
-								newGameInfo[2].toLowerCase().startsWith("a") ? "n"
-										: "", newGameInfo[2]));
+		Main.getCommandPrompt().appendLine(String.format("Good, we are in dire need of a%s %s", newGameInfo[2].toLowerCase().startsWith("a") ? "n" : "", newGameInfo[2]));
 		sleep(1000, 3000);
 
 		// Gender
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt()
-					.appendLine(
-							String.format(
-									"Forgive me %s for I cannot see, but what is your gender?",
-									newGameInfo[0]));
+			Main.getCommandPrompt().appendLine(String.format("Forgive me %s for I cannot see, but what is your gender?", newGameInfo[0]));
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Male");
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("2: Female");
 			Main.getCommandPrompt().setInputAllowed(true);
 			waitForInput();
-		} while (!isValidInput((newGameInfo[3] = Main.getCommandPrompt()
-				.getLastInput()), "number", 1, 2));
+		} while (!isValidInput((newGameInfo[3] = Main.getCommandPrompt().getLastInput()), "number", 1, 2));
 		Main.getCommandPrompt().setInputAllowed(false);
 		switch (newGameInfo[3]) {
 		case "1":
@@ -210,19 +191,13 @@ public class ChooseYourOwnAdventure implements Runnable {
 			newGameInfo[3] = "Female";
 			break;
 		}
-		Main.getCommandPrompt()
-				.appendLine(
-						String.format(
-								"Thank you for your cooperation up to this point %s, I have but one more question for you.",
-								newGameInfo[2]));
+		Main.getCommandPrompt().appendLine(String.format("Thank you for your cooperation up to this point %s, I have but one more question for you.", newGameInfo[2]));
 		sleep(1000, 3000);
 
 		// Race
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine(
-					String.format("What race are you %s?",
-							newGameInfo[3].startsWith("M") ? "sir" : "madam"));
+			Main.getCommandPrompt().appendLine(String.format("What race are you %s?", newGameInfo[3].startsWith("M") ? "sir" : "madam"));
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Elf");
 			sleep(200, 500);
@@ -231,8 +206,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 			Main.getCommandPrompt().appendLine("3: Human");
 			Main.getCommandPrompt().setInputAllowed(true);
 			waitForInput();
-		} while (!isValidInput((newGameInfo[4] = Main.getCommandPrompt()
-				.getLastInput()), "number", 1, 3));
+		} while (!isValidInput((newGameInfo[4] = Main.getCommandPrompt().getLastInput()), "number", 1, 3));
 		Main.getCommandPrompt().setInputAllowed(false);
 		switch (newGameInfo[4]) {
 		case "1":
@@ -245,32 +219,41 @@ public class ChooseYourOwnAdventure implements Runnable {
 			newGameInfo[4] = "Human";
 			break;
 		}
-		Main.getCommandPrompt().appendLine(
-				String.format("Ah, but of course!", newGameInfo[2]));
+		Main.getCommandPrompt().appendLine(String.format("Ah, but of course!", newGameInfo[2]));
 		sleep(1000, 3000);
 
 		return newGameInfo;
 	}
 
-	private static boolean isValidInput(String input, Object... args) {
+	private boolean isValidInput(String input, Object... args) {
+		if(helpScreen(input)) return false;
 		if (args.length > 0) {
 			switch (((String) args[0]).toLowerCase()) {
-			case "number":
-				int inputAsNumber = -1;
-				try {
-					inputAsNumber = Integer.valueOf(input.substring(0, 1));
-				} catch (NumberFormatException e) {
-					System.out.println("NaN");
-					return false;
-				}
-				if (inputAsNumber < (int) args[1]
-						|| inputAsNumber > (int) args[2]) {
-					return false;
-				}
-				break;
+				case "number":
+					int inputAsNumber;
+					try {
+						inputAsNumber = Integer.valueOf(input.substring(0, 1));
+					} catch (NumberFormatException e) {
+						return false;
+					}
+					if (inputAsNumber < (int) args[1] || inputAsNumber > (int) args[2]) {
+						return false;
+					}
+					break;
+				case "alphanumeric":
+					return input.matches("[a-zA-Z0-9_]+");
 			}
 		}
 		return !input.equalsIgnoreCase("\n");
+	}
+
+	public boolean helpScreen(String input) {
+		if(!input.matches("(\\?|help)")) {
+			return false;
+		}
+
+		//TODO: Print help screen
+		return true;
 	}
 
 	public void sleep(long millis) {

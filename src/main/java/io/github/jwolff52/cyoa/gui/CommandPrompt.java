@@ -3,7 +3,7 @@ package io.github.jwolff52.cyoa.gui;
 import io.github.jwolff52.cyoa.Main;
 import io.github.jwolff52.cyoa.res.R;
 import io.github.jwolff52.cyoa.util.CLogger;
-import io.github.jwolff52.cyoa.util.DelayedPrintUtil;
+import io.github.jwolff52.cyoa.util.DelayedActionUtil;
 
 import javax.swing.*;
 
@@ -63,7 +63,7 @@ public class CommandPrompt extends JFrame {
                         Main.getGameThread().resume();
                     } else {
                         if (!lastInput.equals("")) {
-                            DelayedPrintUtil.setCmdText(cmdArea.getText());
+                            DelayedActionUtil.setCmdText(cmdArea.getText());
                             cmdArea.setText("Please Wait");
                         }
                     }
@@ -102,9 +102,24 @@ public class CommandPrompt extends JFrame {
         }
     }
 
+    public void appendChar(char c, String pauseCharacters) {
+        displayArea.append(c + "");
+        if ((c + "").matches(pauseCharacters)) {
+            Main.getGameThread().sleep(425);
+        }
+    }
+
     public void appendLine(String line) {
         for (char c : line.toCharArray()) {
             appendChar(c);
+            Main.getGameThread().sleep(75);
+        }
+        displayArea.append("\n");
+    }
+
+    public void appendLine(String line, String pauseCharacters) {
+        for (char c : line.toCharArray()) {
+            appendChar(c, pauseCharacters);
             Main.getGameThread().sleep(75);
         }
         displayArea.append("\n");
@@ -196,4 +211,5 @@ public class CommandPrompt extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }

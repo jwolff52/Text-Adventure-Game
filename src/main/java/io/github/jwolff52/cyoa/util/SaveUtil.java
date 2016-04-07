@@ -4,13 +4,14 @@ import io.github.jwolff52.cyoa.Main;
 import io.github.jwolff52.cyoa.res.R;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class SaveUtil {
     private static File savedGameDirectory;
     private static File[] savedGames;
 
     public static void init() {
-        savedGameDirectory = new File(R.JAR_HOME, "saves" + File.separator);
+        savedGameDirectory = R.SAVE_HOME;
         if(!savedGameDirectory.exists()) {
             savedGameDirectory.mkdirs();
         }
@@ -42,7 +43,8 @@ public class SaveUtil {
 
     private static void newGame() {
         String[] info = Main.getGameThread().getNewGameInfo();
-        File newSave = new File(R.JAR_HOME, info[0] + ".txt");
+        File newSave = new File(R.SAVE_HOME, String.format("%s%sinfo.txt", info[0], File.separator));
+        newSave.mkdirs();
         TFileWriter.writeFile(newSave, info);
         Main.getGameThread().setPlayer(newSave);
     }
@@ -56,7 +58,7 @@ public class SaveUtil {
         for (int i =0; i < savedGames.length; i++) {
             sb.append(i + 1);
             sb.append(": ");
-            sb.append(savedGames[i].getName().substring(0, savedGames[i].getName().indexOf('.')));
+            sb.append(savedGames[i].getName());
             sb.append("\n");
         }
         sb.append(savedGames.length + 1);
@@ -71,7 +73,7 @@ public class SaveUtil {
             StringBuilder sb = new StringBuilder();
             sb.append(i + 1);
             sb.append(": ");
-            sb.append(savedGames[i].getName().substring(0, savedGames[i].getName().indexOf('.')));
+            sb.append(savedGames[i].getName());
             sb.append("\n");
             formattedFileList[i] = sb.toString();
         }
@@ -81,5 +83,23 @@ public class SaveUtil {
         sb.append("New Game...");
         formattedFileList[savedGames.length] = sb.toString();
         return formattedFileList;
+    }
+
+    public static ArrayList<String> getPlayerInventory(String playerName) {
+        for(File f : savedGames) {
+            if(f.getName().equalsIgnoreCase(playerName)) {
+                return TFileReader.readFile(new File(f, "inventory.txt"));
+            }
+        }
+        return null;
+    }
+
+    public static void savePlayerInventory() {
+        String playerName = Main.getGameThread().getPlayer().getName();
+        for(File f : savedGames) {
+            if(f.getName().equalsIgnoreCase(playerName)) {
+                TFileWriter.writeFile(new File(f, "inventory.txt"), Main.getGameThread().getPlayer().getInventory().saveInventory());
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package io.github.jwolff52.cyoa.entities;
 
-import io.github.jwolff52.cyoa.util.Alignment;
+import io.github.jwolff52.cyoa.entities.inventory.Inventory;
+import io.github.jwolff52.cyoa.util.AlignmentType;
 
 import java.util.ArrayList;
 
@@ -11,6 +12,8 @@ public class Player {
 	private boolean isMale;
 	private String race;
 	private int[] alignment;
+	private Inventory inventory;
+	private int gold;
 
 	public Player(ArrayList<String> playerInfo) {
 		name = playerInfo.get(0);
@@ -20,15 +23,6 @@ public class Player {
 		race = playerInfo.get(4);
 		alignment = new int[3];
 		setAlignment(playerInfo.get(5).split(","));
-	}
-	
-	public Player(String name) {
-		this.name = name;
-		hometown = null;
-		warriorClass = null;
-		isMale = true;
-		race = null;
-		alignment = new int[3];
 	}
 
 	public String getName() {
@@ -80,11 +74,11 @@ public class Player {
 		}
 		switch(alignment) {
 		case 0:
-			return Alignment.Good.getAsString();
+			return AlignmentType.Good.getAsString();
 		case 1:
-			return Alignment.Evil.getAsString();
+			return AlignmentType.Evil.getAsString();
 		default: 
-			return Alignment.Sarcastic.getAsString();
+			return AlignmentType.Sarcastic.getAsString();
 		}
 	}
 	
@@ -98,7 +92,7 @@ public class Player {
 		this.alignment = alignment;
 	}
 	
-	public void incrementAlignment(Alignment type) {
+	public void incrementAlignment(AlignmentType type) {
 		switch(type) {
 		case Good:
 			alignment[0]++;
@@ -109,5 +103,9 @@ public class Player {
 		default:
 			alignment[2]++;
 		}
+	}
+
+	public Inventory getInventory() {
+		return inventory;
 	}
 }

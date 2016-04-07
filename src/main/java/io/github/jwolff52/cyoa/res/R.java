@@ -12,6 +12,7 @@ public class R {
 
     //Files
     public static final File JAR_HOME = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replace("%20", " "));
+    public static final File SAVE_HOME = new File(JAR_HOME, String.format("saves%s", File.separator));
 
     //Helper Methods
 //    private static File setHomeDir() {

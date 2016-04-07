@@ -2,7 +2,7 @@ package io.github.jwolff52.cyoa;
 
 import io.github.jwolff52.cyoa.gui.CommandPrompt;
 import io.github.jwolff52.cyoa.util.CLogger;
-import io.github.jwolff52.cyoa.util.SaveUtils;
+import io.github.jwolff52.cyoa.util.SaveUtil;
 
 public class Main extends Thread {
 
@@ -11,7 +11,7 @@ public class Main extends Thread {
 
     public static void main(String[] args) {
         CLogger.init();
-        SaveUtils.init();
+        SaveUtil.init();
         commandPrompt = new CommandPrompt(false);
         gameThread = new ChooseYourOwnAdventure();
         gameThread.start();
