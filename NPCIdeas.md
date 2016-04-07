@@ -50,4 +50,4 @@ Some Monsters will be considered legendary and will have a higher chance to drop
 
 
 
-* We are either going to have a local derby database or we will just continue with the text file method we are using right now. Something we will probably want to decide on sooner rather than later.
+\* We are either going to have a local derby database or we will just continue with the text file method we are using right now. Something we will probably want to decide on sooner rather than later.
