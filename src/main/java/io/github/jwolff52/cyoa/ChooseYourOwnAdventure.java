@@ -1,6 +1,6 @@
 package io.github.jwolff52.cyoa;
 
-import io.github.jwolff52.cyoa.entities.Player;
+import io.github.jwolff52.cyoa.entity.Player;
 import io.github.jwolff52.cyoa.res.R;
 import io.github.jwolff52.cyoa.util.CLogger;
 import io.github.jwolff52.cyoa.util.SaveUtil;
@@ -25,7 +25,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 		Main.getCommandPrompt().setInputAllowed(false);
 		do {
 			Main.getCommandPrompt().clearScreen();
-			chooseSave();
+			listSaves();
 			Main.getCommandPrompt().setInputAllowed(true);
 			waitForInput();
 		} while (!SaveUtil.chooseSave());
@@ -46,7 +46,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 		sleep(3000);
 	}
 
-	public void chooseSave() {
+	public void listSaves() {
 		Main.getCommandPrompt().appendLine("Choose a save");
 		Main.getCommandPrompt().appendLine("\n");
 		Main.getCommandPrompt().appendLines(SaveUtil.getFormattedFileListAsArray());
@@ -272,8 +272,8 @@ public class ChooseYourOwnAdventure implements Runnable {
 		}
 	}
 
-	public void setPlayer(File file) {
-		player = new Player(TFileReader.readFile(file));
+	public void setPlayer(File file, boolean newPlayer) {
+		player = new Player(TFileReader.readFile(file), newPlayer);
 	}
 
 	public Player getPlayer() {

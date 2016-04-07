@@ -37,7 +37,7 @@ public class SaveUtil {
             newGame();
             return true;
         }
-        Main.getGameThread().setPlayer(savedGames[save]);
+        Main.getGameThread().setPlayer(savedGames[save], false);
         return true;
     }
 
@@ -46,7 +46,7 @@ public class SaveUtil {
         File newSave = new File(R.SAVE_HOME, String.format("%s%sinfo.txt", info[0], File.separator));
         newSave.mkdirs();
         TFileWriter.writeFile(newSave, info);
-        Main.getGameThread().setPlayer(newSave);
+        Main.getGameThread().setPlayer(newSave, true);
     }
 
     public static File[] getFileList() {
