@@ -1,22 +1,22 @@
 package io.github.jwolff52.cyoa.entities.inventory;
 
-import io.github.jwolff52.cyoa.entities.inventory.item.Item;
+import io.github.jwolff52.cyoa.entities.inventory.item.GenericItem;
 
 /**
  * Created by James on 4/7/2016.
  */
 public class ItemStack {
 
-    private Item item;
+    private GenericItem genericItem;
     private int quantity;
 
-    public ItemStack(Item item) {
-        this.item = item;
+    public ItemStack(GenericItem genericItem) {
+        this.genericItem = genericItem;
         quantity = 1;
     }
 
-    public ItemStack(Item item, int quantity) {
-        this.item = item;
+    public ItemStack(GenericItem genericItem, int quantity) {
+        this.genericItem = genericItem;
         this.quantity = quantity;
     }
 
@@ -24,7 +24,7 @@ public class ItemStack {
         return quantity;
     }
 
-    public Item getItem() {
-        return item;
+    public GenericItem getGenericItem() {
+        return genericItem;
     }
 }

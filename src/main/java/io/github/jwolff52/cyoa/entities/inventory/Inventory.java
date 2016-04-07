@@ -1,6 +1,6 @@
 package io.github.jwolff52.cyoa.entities.inventory;
 
-import io.github.jwolff52.cyoa.entities.inventory.item.Item;
+import io.github.jwolff52.cyoa.entities.inventory.item.GenericItem;
 import io.github.jwolff52.cyoa.util.SaveUtil;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class Inventory {
             if(playerInventory.size() >= i) {
                 slots[i] = new Slot(
                         new ItemStack(
-                                new Item(
+                                new GenericItem(
                                         playerInventory.get(i).substring(2)
                                 ),
                                 Integer.valueOf(
@@ -39,7 +39,7 @@ public class Inventory {
     public ArrayList<String> saveInventory() {
         ArrayList<String> inventory = new ArrayList<>();
         for (Slot s : slots) {
-            inventory.add(String.format("%s%s", s.getItemStack().getQuantity() < 10 ? String.format("0%d", s.getItemStack().getQuantity()) : String.format("%d", s.getItemStack().getQuantity()), s.getItemStack().getItem().toString()));
+            inventory.add(String.format("%s%s", s.getItemStack().getQuantity() < 10 ? String.format("0%d", s.getItemStack().getQuantity()) : String.format("%d", s.getItemStack().getQuantity()), s.getItemStack().getGenericItem().toString()));
         }
         return inventory;
     }
