@@ -62,7 +62,7 @@
               <component id="968a" class="javax.swing.JTextArea" binding="displayArea">
                 <constraints/>
                 <properties>
-                  <autoscrolls value="false"/>
+                  <autoscrolls value="true"/>
                   <background color="-16777216"/>
                   <caretColor color="-8212805"/>
                   <editable value="true"/>
