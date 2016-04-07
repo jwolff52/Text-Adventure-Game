@@ -4,12 +4,12 @@ import io.github.jwolff52.cyoa.Main;
 
 import java.util.TimerTask;
 
-public class DelayedPrintUtil extends TimerTask {
+public class DelayedActionUtil extends TimerTask {
     private String contents;
     private long delay;
     private byte amount;
 
-    public DelayedPrintUtil(String contents, long delay, byte amount) {
+    public DelayedActionUtil(String contents, long delay, byte amount) {
         this.contents = contents;
         this.delay = delay;
         this.amount = amount;
@@ -24,7 +24,6 @@ public class DelayedPrintUtil extends TimerTask {
             } catch (InterruptedException e) {
                 CLogger.logError(e);
             }
-            System.out.println(contents);
             amount--;
         }
     }
@@ -33,8 +32,8 @@ public class DelayedPrintUtil extends TimerTask {
         return amount;
     }
 
-    public static DelayedPrintUtil println(long delay, byte amount) {
-        return new DelayedPrintUtil("\n", delay, amount);
+    public static DelayedActionUtil println(long delay, byte amount) {
+        return new DelayedActionUtil("\n", delay, amount);
     }
 
     public static void setCmdText(final String cmdText) {

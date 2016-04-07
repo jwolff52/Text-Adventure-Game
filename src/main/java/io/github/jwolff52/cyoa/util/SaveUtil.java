@@ -5,7 +5,7 @@ import io.github.jwolff52.cyoa.res.R;
 
 import java.io.File;
 
-public class SaveUtils {
+public class SaveUtil {
     private static File savedGameDirectory;
     private static File[] savedGames;
 
@@ -19,6 +19,9 @@ public class SaveUtils {
 
     public static boolean chooseSave() {
         Main.getCommandPrompt().setInputAllowed(false);
+        if(Main.getGameThread().helpScreen(Main.getCommandPrompt().getLastInput())) {
+            return false;
+        }
         int save;
         try{
             save = Integer.valueOf(Main.getCommandPrompt().getLastInput());
