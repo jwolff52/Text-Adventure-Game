@@ -1,4 +1,4 @@
-package io.github.jwolff52.cyoa.entities.npc;
+package io.github.jwolff52.cyoa.entity.npc;
 
 /**
  * Created by James on 4/7/2016.

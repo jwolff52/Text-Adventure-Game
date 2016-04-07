@@ -1,14 +1,14 @@
-package io.github.jwolff52.cyoa.entities.inventory.item;
+package io.github.jwolff52.cyoa.entity.inventory.item.potion;
 
 /**
  * Created by James on 4/7/2016.
  */
-public enum ItemType {
-    Potion("Potion"), Weapon("Weapon"), Generic("Generic");
+public enum PotionType {
+    Healing("Healing"), Mana("Mana"), Poison("Poison");
 
     private String asString;
 
-    ItemType(String asString) {
+    PotionType(String asString) {
         this.asString = asString;
     }
 
@@ -16,8 +16,8 @@ public enum ItemType {
         return asString;
     }
 
-    public static ItemType getFromString(String asString) {
-        for (ItemType type : ItemType.values()) {
+    public static PotionType getFromString(String asString) {
+        for (PotionType type : PotionType.values()) {
             if(type.getAsString().equalsIgnoreCase(asString)) {
                 return type;
             }

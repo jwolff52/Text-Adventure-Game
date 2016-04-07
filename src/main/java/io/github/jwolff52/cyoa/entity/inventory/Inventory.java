@@ -1,6 +1,6 @@
-package io.github.jwolff52.cyoa.entities.inventory;
+package io.github.jwolff52.cyoa.entity.inventory;
 
-import io.github.jwolff52.cyoa.entities.inventory.item.GenericItem;
+import io.github.jwolff52.cyoa.entity.inventory.item.GenericItem;
 import io.github.jwolff52.cyoa.util.SaveUtil;
 
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
-package io.github.jwolff52.cyoa.entities.npc.monster;
+package io.github.jwolff52.cyoa.entity.npc.monster;
 
-import io.github.jwolff52.cyoa.entities.npc.NPC;
-import io.github.jwolff52.cyoa.entities.npc.NPCType;
+import io.github.jwolff52.cyoa.entity.npc.NPC;
 
 /**
  * Created by James on 4/7/2016.

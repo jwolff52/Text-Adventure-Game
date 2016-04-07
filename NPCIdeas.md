@@ -2,7 +2,7 @@
 
 So I have laid out the different types of friendly NPCs in the `NPCType` Enum.
 
-Each class will extend `NPC` and will go in the `io.github.jwolff52.cyoa.entities.npc` package.
+Each class will extend `NPC` and will go in the `io.github.jwolff52.cyoa.entity.npc` package.
 
 Names will be Randomly generated and we will pick a random back story from a database.*
 

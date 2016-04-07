@@ -1,4 +1,4 @@
-package io.github.jwolff52.cyoa.entities.inventory.item.weapon;
+package io.github.jwolff52.cyoa.entity.inventory.item.weapon;
 
 /**
  * Created by James on 4/7/2016.

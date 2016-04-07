@@ -1,4 +1,4 @@
-package io.github.jwolff52.cyoa.entities.npc;
+package io.github.jwolff52.cyoa.entity.npc;
 
 import java.util.ArrayList;
 
