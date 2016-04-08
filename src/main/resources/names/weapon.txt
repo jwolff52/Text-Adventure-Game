@@ -1,0 +1,14 @@
+# Adjectives
+Dark
+Foreboding
+Deadly
+Inert
+Flaming
+Sound
+Infinite
+
+# Nouns
+Wisdom
+Pain
+Death
+Despair
