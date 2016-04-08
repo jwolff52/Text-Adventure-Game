@@ -1,7 +1,7 @@
 package io.github.jwolff52.cyoa.gui;
 
 import io.github.jwolff52.cyoa.Main;
-import io.github.jwolff52.cyoa.res.R;
+import io.github.jwolff52.cyoa.ref.R;
 import io.github.jwolff52.cyoa.util.CLogger;
 import io.github.jwolff52.cyoa.util.DelayedActionUtil;
 

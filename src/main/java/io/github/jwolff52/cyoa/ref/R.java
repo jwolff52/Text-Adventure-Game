@@ -1,4 +1,4 @@
-package io.github.jwolff52.cyoa.res;
+package io.github.jwolff52.cyoa.ref;
 
 import io.github.jwolff52.cyoa.Main;
 
@@ -11,7 +11,7 @@ public class R {
     public static final String GAME_NAME = "Choose Your Own Adventure";
 
     //Files
-    public static final File JAR_HOME = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replace("%20", " "));
+    public static final File JAR_HOME = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replace("%20", " ")).getParentFile();
     public static final File SAVE_HOME = new File(JAR_HOME, String.format("saves%s", File.separator));
 
     //Helper Methods

@@ -1,7 +1,7 @@
 package io.github.jwolff52.cyoa;
 
 import io.github.jwolff52.cyoa.entity.Player;
-import io.github.jwolff52.cyoa.res.R;
+import io.github.jwolff52.cyoa.ref.R;
 import io.github.jwolff52.cyoa.util.CLogger;
 import io.github.jwolff52.cyoa.util.SaveUtil;
 import io.github.jwolff52.cyoa.util.TFileReader;
@@ -21,7 +21,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 	@Override
 	public void run() {
 		Main.getCommandPrompt().setScreenLocked(true);
-//		titleScreen(); Commented out so I don't have to watch it every time I test the game
+		titleScreen(); // Commented out so I don't have to watch it every time I test the game
 		Main.getCommandPrompt().setInputAllowed(false);
 		do {
 			Main.getCommandPrompt().clearScreen();
@@ -33,7 +33,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 	}
 
 	public void titleScreen() {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("logo.txt")));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("/info.txt")));
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {
@@ -56,7 +56,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 
 	public void prologue() {
 		Main.getCommandPrompt().clearScreen();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("prologue.txt")));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("/prologue.txt")));
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {

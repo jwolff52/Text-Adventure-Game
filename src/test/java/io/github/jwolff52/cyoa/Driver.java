@@ -1,6 +1,6 @@
 package io.github.jwolff52.cyoa;
 
-import io.github.jwolff52.cyoa.res.R;
+import io.github.jwolff52.cyoa.ref.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;

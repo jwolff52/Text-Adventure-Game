@@ -1,7 +1,7 @@
 package io.github.jwolff52.cyoa.util;
 
 import io.github.jwolff52.cyoa.Main;
-import io.github.jwolff52.cyoa.res.R;
+import io.github.jwolff52.cyoa.ref.R;
 
 import java.io.File;
 import java.util.ArrayList;
