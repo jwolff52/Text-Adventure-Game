@@ -110,16 +110,28 @@ public class CommandPrompt extends JFrame {
     }
 
     public void appendLine(String line) {
+        int lineLength = 0;
         for (char c : line.toCharArray()) {
+            if (lineLength >= 85) {
+                displayArea.append("\n");
+                lineLength = 0;
+            }
             appendChar(c);
+            lineLength++;
             Main.getGameThread().sleep(75);
         }
         displayArea.append("\n");
     }
 
     public void appendLine(String line, String pauseCharacters) {
+        int lineLength = 0;
+        if (lineLength >= 85) {
+            displayArea.append("\n");
+            lineLength = 0;
+        }
         for (char c : line.toCharArray()) {
             appendChar(c, pauseCharacters);
+            lineLength++;
             Main.getGameThread().sleep(75);
         }
         displayArea.append("\n");
@@ -211,5 +223,4 @@ public class CommandPrompt extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
-
 }

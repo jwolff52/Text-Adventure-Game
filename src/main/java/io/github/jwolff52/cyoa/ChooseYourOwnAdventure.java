@@ -21,7 +21,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 	@Override
 	public void run() {
 		Main.getCommandPrompt().setScreenLocked(true);
-		titleScreen();
+//		titleScreen(); Commented out so I don't have to watch it every time I test the game
 		Main.getCommandPrompt().setInputAllowed(false);
 		do {
 			Main.getCommandPrompt().clearScreen();
@@ -76,10 +76,12 @@ public class ChooseYourOwnAdventure implements Runnable {
 			Main.getCommandPrompt().clearScreen();
 			Main.getCommandPrompt().appendLine("The Old Man: What is your name?");
 			Main.getCommandPrompt().setInputAllowed(true);
-			Main.getCommandPrompt().setScreenLocked(false);
+			Main.getCommandPrompt().setScreenLocked(true);
 			waitForInput();
 		} while (!isValidInput(newGameInfo[0] = Main.getCommandPrompt().getLastInput(), "alphanumeric"));
 		Main.getCommandPrompt().setInputAllowed(false);
+		Main.getCommandPrompt().appendLine(String.format("My name is %s", newGameInfo[0]));
+		sleep(1000, 3000);
 		Main.getCommandPrompt().appendLine(String.format("The Old Man: It is a pleasure to meet you %s.", newGameInfo[0]));
 		sleep(1000, 3000);
 
@@ -99,7 +101,6 @@ public class ChooseYourOwnAdventure implements Runnable {
 			Main.getCommandPrompt().appendLine("\n");
 			Main.getCommandPrompt().appendLine(String.format("If you would like to learn more about conversation in %s type \"?\"", R.GAME_NAME));
 			Main.getCommandPrompt().setInputAllowed(true);
-			Main.getCommandPrompt().setScreenLocked(false);
 			waitForInput();
 		} while (!isValidInput(newGameInfo[5] = Main.getCommandPrompt().getLastInput(), "number", 1, 3));
 		Main.getCommandPrompt().setInputAllowed(false);
@@ -115,32 +116,41 @@ public class ChooseYourOwnAdventure implements Runnable {
 			break;
 		}
 		if (newGameInfo[5].startsWith("1")) {
-			Main.getCommandPrompt().appendLine("I am a peaceful traveler, seeking to become a great warrior!");
-			sleep(2000);
+			Main.getCommandPrompt().appendLine(String.format("%s: I am a peaceful traveler, seeking to become a great warrior!", newGameInfo[0]));
+			sleep(1000, 3000);
+			Main.getCommandPrompt().appendLine("The Old Man: Ah, wonderful! Perhaps you could provide some assistance to me after I ask you a few more questions.");
 		} else if (newGameInfo[5].endsWith("1")) {
-			Main.getCommandPrompt().appendLine("Move out of the way grandpa, I have got things to do!");
-			sleep(2000);
+			Main.getCommandPrompt().appendLine(String.format("%s: Move out of the way grandpa, I have got things to do!", newGameInfo[0]));
+			sleep(1000, 3000);
+			Main.getCommandPrompt().appendLine("The Old Man: Wait! You must not go out there I need to ask you a few more questions.");
 		} else {
-			Main.getCommandPrompt().appendLine("What difference does it make to you?");
-			sleep(2000);
+			Main.getCommandPrompt().appendLine(String.format("%s: Oh me? I'm a little horse", newGameInfo[0]));
+			sleep(1000, 3000);
+			Main.getCommandPrompt().appendLine("The Old Man: ...");
+			sleep(1000);
+			Main.getCommandPrompt().appendLine("The Old Man: ...");
+			sleep(1000);
+			Main.getCommandPrompt().appendLine("The Old Man: Anyway.");
 		}
-		Main.getCommandPrompt().appendLine(String.format("It is a pleasure to meet you %s.", newGameInfo[0]));
 		sleep(1000, 3000);
 
 		// Home Town
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine("From where dost thou hail from?");
+			Main.getCommandPrompt().appendLine("The Old Man: From where dost thou hail from?");
 			Main.getCommandPrompt().setInputAllowed(true);
 			waitForInput();
 		} while (!isValidInput(newGameInfo[1] = Main.getCommandPrompt().getLastInput(), "alphanumeric"));
 		Main.getCommandPrompt().setInputAllowed(false);
-		Main.getCommandPrompt().appendLine(String.format("I have heard many a tale of %s, welcome to Fenhelm", newGameInfo[1]));
+		Main.getCommandPrompt().appendLine(String.format("%s: I hail from %s.", newGameInfo[0], newGameInfo[1]));
 		sleep(1000, 3000);
+		Main.getCommandPrompt().appendLine(String.format("The Old Man: I have heard many a tale of %s, welcome to Fenhelm", newGameInfo[1]));
+		sleep(1000, 3000);
+
 		// Class
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine("Which class of warrior are you?");
+			Main.getCommandPrompt().appendLine("The Old Man: Which class of warrior are you?");
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Fighter");
 			sleep(200, 500);
@@ -168,13 +178,15 @@ public class ChooseYourOwnAdventure implements Runnable {
 			newGameInfo[2] = "Rogue";
 			break;
 		}
-		Main.getCommandPrompt().appendLine(String.format("Good, we are in dire need of a%s %s", newGameInfo[2].toLowerCase().startsWith("a") ? "n" : "", newGameInfo[2]));
+		Main.getCommandPrompt().appendLine(String.format("%s: I am a %s!", newGameInfo[0], newGameInfo[2]));
+		sleep(1000, 3000);
+		Main.getCommandPrompt().appendLine("The Old Man: Great! Perhaps you could help me deal with the pack of wolves outside my barn, but first...");
 		sleep(1000, 3000);
 
 		// Gender
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine(String.format("Forgive me %s for I cannot see, but what is your gender?", newGameInfo[0]));
+			Main.getCommandPrompt().appendLine(String.format("The Old Man: Forgive me %s for I cannot see very well in my old age, but what is your gender?", newGameInfo[0]));
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Male");
 			sleep(200, 500);
@@ -191,13 +203,15 @@ public class ChooseYourOwnAdventure implements Runnable {
 			newGameInfo[3] = "Female";
 			break;
 		}
-		Main.getCommandPrompt().appendLine(String.format("Thank you for your cooperation up to this point %s, I have but one more question for you.", newGameInfo[2]));
+		Main.getCommandPrompt().appendLine(String.format("%s: I am %s", newGameInfo[0], newGameInfo[3]));
+		sleep(1000, 3000);
+		Main.getCommandPrompt().appendLine(String.format("The Old Man: Thank you for your cooperation up to this point %s, I have but one more question for you.", newGameInfo[0]));
 		sleep(1000, 3000);
 
 		// Race
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine(String.format("What race are you %s?", newGameInfo[3].startsWith("M") ? "sir" : "madam"));
+			Main.getCommandPrompt().appendLine(String.format("The Old Man: What race are you %s?", newGameInfo[3].startsWith("M") ? "sir" : "madam"));
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Elf");
 			sleep(200, 500);
@@ -219,7 +233,9 @@ public class ChooseYourOwnAdventure implements Runnable {
 			newGameInfo[4] = "Human";
 			break;
 		}
-		Main.getCommandPrompt().appendLine(String.format("Ah, but of course!", newGameInfo[2]));
+		Main.getCommandPrompt().appendLine(String.format("%s: I am a%s %s", newGameInfo[0], newGameInfo[4].toLowerCase().startsWith("e") ? "n" : "", newGameInfo[4]));
+		sleep(1000, 3000);
+		Main.getCommandPrompt().appendLine(String.format("The Old Man: Ah, but of course!", newGameInfo[2]));
 		sleep(1000, 3000);
 
 		return newGameInfo;
