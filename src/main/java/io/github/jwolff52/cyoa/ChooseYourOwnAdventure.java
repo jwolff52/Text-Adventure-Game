@@ -365,6 +365,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 				default:
 					Main.getCommandPrompt().appendLine("I'm sorry I didn't quite catch that...");
 					sleep(1500);
+					Main.getCommandPrompt().clearScreen();
 			}
 		} while(true);
 	}
