@@ -21,7 +21,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 	@Override
 	public void run() {
 		Main.getCommandPrompt().setScreenLocked(true);
-		titleScreen(); // Commented out so I don't have to watch it every time I test the game
+//		titleScreen(); // Commented out so I don't have to watch it every time I test the game
 		Main.getCommandPrompt().setInputAllowed(false);
 		do {
 			Main.getCommandPrompt().clearScreen();
@@ -56,7 +56,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 
 	public void prologue() {
 		Main.getCommandPrompt().clearScreen();
-		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("/prologue.txt")));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("/assets/text/prologue.txt")));
 		String line;
 		try {
 			while ((line = reader.readLine()) != null) {
@@ -264,12 +264,109 @@ public class ChooseYourOwnAdventure implements Runnable {
 	}
 
 	public boolean helpScreen(String input) {
-		if(!input.matches("(\\?|help)")) {
+		if (!input.matches("(\\?|help|more)")) {
 			return false;
 		}
 
-		//TODO: Print help screen
-		return true;
+		Main.getCommandPrompt().clearScreen();
+
+		if (!input.matches("(more)")) {
+			Main.getCommandPrompt().appendLine("When you are presented with multiple options each option will be prepended with a number, type in that number then press enter to select that option.");
+			Main.getCommandPrompt().appendLine("\n");
+		}
+
+		do {
+			Main.getCommandPrompt().appendLine("What would you like to learn more about?");
+			Main.getCommandPrompt().appendLine("1: Conversation");
+			Main.getCommandPrompt().appendLine("2: Battling");
+			Main.getCommandPrompt().appendLine("3: Weapons");
+			Main.getCommandPrompt().appendLine("\n");
+			Main.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+			boolean isScreenLocked = Main.getCommandPrompt().isScreenLocked();
+			if (!isScreenLocked) {
+				Main.getCommandPrompt().setScreenLocked(true);
+			}
+			Main.getCommandPrompt().setInputAllowed(true);
+			waitForInput();
+			Main.getCommandPrompt().setInputAllowed(false);
+			switch (Main.getCommandPrompt().getLastInput().toLowerCase()) {
+				case "1": //x - (x - y - z)
+					do {
+						Main.getCommandPrompt().clearScreen();
+						Main.getCommandPrompt().appendLine("During most conversation you will be given three tones to respond in, friendly, evil, and neutral.");
+						Main.getCommandPrompt().appendLine("Based on these responses there are three values calculated for your character that influence how potentially friendly NPCs will act around you.");
+						Main.getCommandPrompt().appendLine("\n");
+						Main.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
+						Main.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+						Main.getCommandPrompt().setInputAllowed(true);
+						waitForInput();
+						Main.getCommandPrompt().setInputAllowed(false);
+						if (Main.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
+							Main.getCommandPrompt().setScreenLocked(isScreenLocked);
+							return true;
+						}
+						if (Main.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
+							Main.getCommandPrompt().setScreenLocked(isScreenLocked);
+							return helpScreen("more");
+						} else {
+							Main.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
+							sleep(1500);
+						}
+					} while (true);
+				case "2":
+					do {
+						//TODO: How is battling going to work...
+						Main.getCommandPrompt().clearScreen();
+						Main.getCommandPrompt().appendLine("TODO");
+						Main.getCommandPrompt().appendLine("\n");
+						Main.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
+						Main.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+						Main.getCommandPrompt().setInputAllowed(true);
+						waitForInput();
+						Main.getCommandPrompt().setInputAllowed(false);
+						if (Main.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
+							Main.getCommandPrompt().setScreenLocked(isScreenLocked);
+							return true;
+						}
+						if (Main.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
+							Main.getCommandPrompt().setScreenLocked(isScreenLocked);
+							return helpScreen("more");
+						} else {
+							Main.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
+							sleep(1500);
+						}
+					} while (true);
+				case "3":
+					do {
+						//TODO: How are weapons going to work...
+						Main.getCommandPrompt().clearScreen();
+						Main.getCommandPrompt().appendLine("TODO");
+						Main.getCommandPrompt().appendLine("\n");
+						Main.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
+						Main.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+						Main.getCommandPrompt().setInputAllowed(true);
+						waitForInput();
+						Main.getCommandPrompt().setInputAllowed(false);
+						if (Main.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
+							Main.getCommandPrompt().setScreenLocked(isScreenLocked);
+							return true;
+						}
+						if (Main.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
+							Main.getCommandPrompt().setScreenLocked(isScreenLocked);
+							return helpScreen("more");
+						} else {
+							Main.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
+							sleep(1500);
+						}
+					} while (true);
+				case "q":
+				case "quit":
+					return true;
+				default:
+					Main.getCommandPrompt().appendLine("I'm sorry I didn't quite catch that...");
+					sleep(1500);
+			}
+		} while(true);
 	}
 
 	public void sleep(long millis) {
