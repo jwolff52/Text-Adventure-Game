@@ -15,14 +15,6 @@ public class R {
     public static final File SAVE_HOME = new File(JAR_HOME, String.format("saves%s", File.separator));
 
     //Helper Methods
-//    private static File setHomeDir() {
-//        File home = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().replace("%20", " "));
-//        while(true) {
-//            if (!((home = home.getParentFile()).getAbsolutePath().toLowerCase().contains("out"))) break;
-//        }
-//        return home;
-//    }
-
     public static InputStream getResourceAsStream(String resource) {
         return R.class.getResourceAsStream(resource);
     }
