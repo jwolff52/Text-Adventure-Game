@@ -12,7 +12,7 @@ public class Potion extends GenericItem {
 
     public Potion(String info) {
         super(info.substring(0, info.indexOf("|||")));
-        properties = new PotionProperties(info.substring(info.lastIndexOf("|||") + 2, info.lastIndexOf('|')));
+        properties = new PotionProperties(info.substring(info.lastIndexOf("|||") + 3, info.lastIndexOf('|')));
         potionType = PotionType.getFromString(info.substring(info.lastIndexOf('|') + 1));
     }
 
