@@ -2,6 +2,8 @@ package io.github.jwolff52.cyoa.util;
 
 import io.github.jwolff52.cyoa.Main;
 import io.github.jwolff52.cyoa.ref.R;
+import io.github.jwolff52.cyoa.util.dialogue.HelpDialogue;
+import io.github.jwolff52.cyoa.util.dialogue.MainDialogue;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class SaveUtil {
 
     public static boolean chooseSave() {
         Main.getCommandPrompt().setInputAllowed(false);
-        if(Main.getGameThread().helpScreen(Main.getCommandPrompt().getLastInput())) {
+        if(HelpDialogue.helpScreen(Main.getCommandPrompt().getLastInput())) {
             return false;
         }
         int save;
@@ -42,7 +44,7 @@ public class SaveUtil {
     }
 
     private static void newGame() {
-        String[] info = Main.getGameThread().getNewGameInfo();
+        String[] info = MainDialogue.getNewGameInfo();
         File newSave = new File(R.SAVE_HOME, String.format("%s%sinfo.txt", info[0], File.separator));
         newSave.getParentFile().mkdirs();
         TFileWriter.writeFile(newSave, info);

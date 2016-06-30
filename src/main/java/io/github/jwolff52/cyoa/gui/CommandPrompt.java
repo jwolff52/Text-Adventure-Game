@@ -4,9 +4,9 @@ import io.github.jwolff52.cyoa.Main;
 import io.github.jwolff52.cyoa.ref.R;
 import io.github.jwolff52.cyoa.util.CLogger;
 import io.github.jwolff52.cyoa.util.DelayedActionUtil;
+import io.github.jwolff52.cyoa.util.dialogue.HelpDialogue;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -167,6 +167,28 @@ public class CommandPrompt extends JFrame {
 
     public void clearScreen() {
         displayArea.setText("");
+    }
+
+    public boolean isValidInput(String input, Object... args) {
+        if(HelpDialogue.helpScreen(input)) return false;
+        if (args.length > 0) {
+            switch (((String) args[0]).toLowerCase()) {
+                case "number":
+                    int inputAsNumber;
+                    try {
+                        inputAsNumber = Integer.valueOf(input.substring(0, 1));
+                    } catch (NumberFormatException e) {
+                        return false;
+                    }
+                    if (inputAsNumber < (int) args[1] || inputAsNumber > (int) args[2]) {
+                        return false;
+                    }
+                    break;
+                case "alphanumeric":
+                    return input.matches("[a-zA-Z0-9_ ]+");
+            }
+        }
+        return !input.equalsIgnoreCase("\n");
     }
 
 
