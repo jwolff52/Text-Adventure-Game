@@ -122,7 +122,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 		} else if (newGameInfo[5].endsWith("1")) {
 			Main.getCommandPrompt().appendLine(String.format("%s: Move out of the way grandpa, I have got things to do!", newGameInfo[0]));
 			sleep(1000, 3000);
-			Main.getCommandPrompt().appendLine("The Old Man: Wait! You must not go out there I need to ask you a few more questions.");
+			Main.getCommandPrompt().appendLine("The Old Man: Wait! You must not go out there I need to ask you a few more questions!");
 		} else {
 			Main.getCommandPrompt().appendLine(String.format("%s: Oh me? I'm a little horse", newGameInfo[0]));
 			sleep(1000, 3000);
@@ -150,7 +150,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 		// Class
 		do {
 			Main.getCommandPrompt().clearScreen();
-			Main.getCommandPrompt().appendLine("The Old Man: Which class of warrior are you?");
+			Main.getCommandPrompt().appendLine("The Old Man: You appear to be a warrior, what is your fancy in battle?");
 			sleep(200, 500);
 			Main.getCommandPrompt().appendLine("1: Fighter");
 			sleep(200, 500);
@@ -257,7 +257,7 @@ public class ChooseYourOwnAdventure implements Runnable {
 					}
 					break;
 				case "alphanumeric":
-					return input.matches("[a-zA-Z0-9_]+");
+					return input.matches("[a-zA-Z0-9_ ]+");
 			}
 		}
 		return !input.equalsIgnoreCase("\n");
@@ -274,7 +274,6 @@ public class ChooseYourOwnAdventure implements Runnable {
 			Main.getCommandPrompt().appendLine("When you are presented with multiple options each option will be prepended with a number, type in that number then press enter to select that option.");
 			Main.getCommandPrompt().appendLine("\n");
 		}
-
 		do {
 			Main.getCommandPrompt().appendLine("What would you like to learn more about?");
 			Main.getCommandPrompt().appendLine("1: Conversation");
