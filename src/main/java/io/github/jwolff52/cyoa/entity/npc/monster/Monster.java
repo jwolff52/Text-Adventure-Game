@@ -8,6 +8,10 @@ import io.github.jwolff52.cyoa.entity.npc.NPC;
 public abstract class Monster extends NPC {
     private int level;
 
+    public Monster(String name) {
+        super(name);
+    }
+
     public int getLevel() {
         return level;
     }

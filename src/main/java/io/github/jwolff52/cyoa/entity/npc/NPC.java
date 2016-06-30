@@ -10,6 +10,10 @@ public abstract class NPC {
     private NPCType type;
     private ArrayList<String> backStory;
 
+    public NPC(String name) {
+        this.name = name;
+    }
+
     /**
      *
      * @return an ArrayList of dropped Items
