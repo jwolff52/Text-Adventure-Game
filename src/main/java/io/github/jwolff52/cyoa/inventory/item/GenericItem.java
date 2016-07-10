@@ -1,5 +1,7 @@
 package io.github.jwolff52.cyoa.inventory.item;
 
+import io.github.jwolff52.cyoa.api.inventory.item.AbstractItem;
+
 import java.util.ArrayList;
 
 /**
@@ -18,6 +20,25 @@ public class GenericItem extends AbstractItem {
         setItemLore(lore);
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public ItemType getType() {
+        return type;
+    }
+
+    @Override
+    public ArrayList<String> getItemLore() {
+        return itemLore;
+    }
+
+    /**
+     * <p>Converts the item to a string, used for storage on disk.</p>
+     * @return This <pre>item</pre> instance as a string.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
