@@ -1,6 +1,6 @@
 package io.github.jwolff52.cyoa.entity;
 
-import io.github.jwolff52.cyoa.entity.inventory.Inventory;
+import io.github.jwolff52.cyoa.inventory.Inventory;
 import io.github.jwolff52.cyoa.util.AlignmentType;
 
 import java.util.ArrayList;

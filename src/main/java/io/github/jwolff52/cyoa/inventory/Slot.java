@@ -1,4 +1,4 @@
-package io.github.jwolff52.cyoa.entity.inventory;
+package io.github.jwolff52.cyoa.inventory;
 
 /**
  * Created by James on 4/7/2016.

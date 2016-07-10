@@ -1,4 +1,4 @@
-package io.github.jwolff52.cyoa.entity.inventory.item;
+package io.github.jwolff52.cyoa.inventory.item;
 
 import java.util.ArrayList;
 

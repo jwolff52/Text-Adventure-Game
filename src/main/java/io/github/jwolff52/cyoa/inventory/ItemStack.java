@@ -1,6 +1,6 @@
-package io.github.jwolff52.cyoa.entity.inventory;
+package io.github.jwolff52.cyoa.inventory;
 
-import io.github.jwolff52.cyoa.entity.inventory.item.GenericItem;
+import io.github.jwolff52.cyoa.inventory.item.GenericItem;
 
 /**
  * Created by James on 4/7/2016.
