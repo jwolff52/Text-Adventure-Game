@@ -1,4 +1,6 @@
-package io.github.jwolff52.cyoa.inventory.item;
+package io.github.jwolff52.cyoa.api.inventory.item;
+
+import io.github.jwolff52.cyoa.inventory.item.ItemType;
 
 import java.util.ArrayList;
 

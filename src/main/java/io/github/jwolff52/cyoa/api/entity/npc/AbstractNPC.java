@@ -1,16 +1,15 @@
-package io.github.jwolff52.cyoa.entity.npc;
+package io.github.jwolff52.cyoa.api.entity.npc;
+
+import io.github.jwolff52.cyoa.entity.npc.NPCType;
 
 import java.util.ArrayList;
 
-/**
- * Created by James on 4/7/2016.
- */
-public abstract class NPC {
+public abstract class AbstractNPC {
     private String name;
     private NPCType type;
     private ArrayList<String> backStory;
 
-    public NPC(String name) {
+    public AbstractNPC(String name) {
         this.name = name;
     }
 
