@@ -18,7 +18,8 @@ public class CommandPrompt extends JFrame {
     private JTextField cmdArea;
     private JScrollPane cmdAreaScrollPane;
     private JScrollPane displayAreaScrollPane;
-    private JSplitPane splitPane;
+    private JSplitPane innerSplitPane;
+    private JSplitPane outerSplitPane;
 
     private boolean inputAllowed, screenLocked;
     private String lastInput;
@@ -170,7 +171,7 @@ public class CommandPrompt extends JFrame {
     }
 
     public boolean isValidInput(String input, Object... args) {
-        if(HelpDialogue.helpScreen(input)) return false;
+        if (HelpDialogue.helpScreen(input)) return false;
         if (args.length > 0) {
             switch (((String) args[0]).toLowerCase()) {
                 case "number":
@@ -212,19 +213,28 @@ public class CommandPrompt extends JFrame {
         mainPanel.setBackground(new Color(-8177477));
         mainPanel.setMinimumSize(new Dimension(600, 400));
         mainPanel.setPreferredSize(new Dimension(600, 400));
-        splitPane = new JSplitPane();
-        splitPane.setContinuousLayout(true);
-        splitPane.setDividerLocation(375);
-        splitPane.setDividerSize(0);
-        splitPane.setFocusable(false);
-        splitPane.setMinimumSize(new Dimension(900, 400));
-        splitPane.setOrientation(0);
-        splitPane.setPreferredSize(new Dimension(600, 400));
-        mainPanel.add(splitPane);
+        outerSplitPane = new JSplitPane();
+        outerSplitPane.setContinuousLayout(true);
+        outerSplitPane.setDividerLocation(25);
+        outerSplitPane.setDividerSize(0);
+        outerSplitPane.setOrientation(0);
+        mainPanel.add(outerSplitPane);
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        outerSplitPane.setLeftComponent(panel1);
+        innerSplitPane = new JSplitPane();
+        innerSplitPane.setContinuousLayout(true);
+        innerSplitPane.setDividerLocation(350);
+        innerSplitPane.setDividerSize(0);
+        innerSplitPane.setFocusable(false);
+        innerSplitPane.setMinimumSize(new Dimension(900, 400));
+        innerSplitPane.setOrientation(0);
+        innerSplitPane.setPreferredSize(new Dimension(600, 400));
+        outerSplitPane.setRightComponent(innerSplitPane);
         cmdAreaScrollPane = new JScrollPane();
         cmdAreaScrollPane.setHorizontalScrollBarPolicy(31);
         cmdAreaScrollPane.setVerticalScrollBarPolicy(21);
-        splitPane.setRightComponent(cmdAreaScrollPane);
+        innerSplitPane.setRightComponent(cmdAreaScrollPane);
         cmdArea = new JTextField();
         cmdArea.setAutoscrolls(false);
         cmdArea.setBackground(new Color(-16777216));
@@ -238,7 +248,7 @@ public class CommandPrompt extends JFrame {
         displayAreaScrollPane.setHorizontalScrollBarPolicy(31);
         displayAreaScrollPane.setMinimumSize(new Dimension(900, 375));
         displayAreaScrollPane.setVerticalScrollBarPolicy(21);
-        splitPane.setLeftComponent(displayAreaScrollPane);
+        innerSplitPane.setLeftComponent(displayAreaScrollPane);
         displayArea = new JTextArea();
         displayArea.setAutoscrolls(true);
         displayArea.setBackground(new Color(-16777216));
