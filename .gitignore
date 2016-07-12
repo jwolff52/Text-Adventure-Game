@@ -33,3 +33,4 @@ nb-configuration.xml
 /out/
 *.ipr
 *.iws
+*.*~
