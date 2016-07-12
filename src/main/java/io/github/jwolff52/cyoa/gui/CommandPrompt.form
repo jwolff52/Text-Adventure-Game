@@ -21,12 +21,15 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="aa6a8" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+          <grid id="aa6a8" binding="infoBarPanel" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
             <constraints>
               <splitpane position="left"/>
             </constraints>
             <properties>
               <foreground color="-12828863"/>
+              <maximumSize width="900" height="25"/>
+              <minimumSize width="900" height="25"/>
+              <preferredSize width="900" height="25"/>
             </properties>
             <border type="none"/>
             <children/>
