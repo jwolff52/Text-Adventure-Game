@@ -4,7 +4,6 @@ package io.github.jwolff52.cyoa.inventory.item.armor;
  * Created by James on 4/7/2016.
  */
 public class ArmorProperties {
-    private int criticalChance;
     private int usableLevel;
     private int baseDamage;
     /**
@@ -14,8 +13,7 @@ public class ArmorProperties {
      */
     private int[] magicDamage;
 
-    public ArmorProperties(int criticalChance, int usableLevel, int baseDamage, int[] magicDamage) {
-        this.criticalChance = criticalChance;
+    public ArmorProperties(int usableLevel, int baseDamage, int[] magicDamage) {
         this.usableLevel = usableLevel;
         this.baseDamage = baseDamage;
         this.magicDamage = magicDamage;
@@ -23,7 +21,6 @@ public class ArmorProperties {
 
     public ArmorProperties(String info) {
         String[] infoAsArray = info.split("\\|");
-        this.criticalChance = Integer.valueOf(infoAsArray[0]);
         this.usableLevel = Integer.valueOf(infoAsArray[1]);
         this.baseDamage = Integer.valueOf(infoAsArray[2]);
         this.magicDamage = new int[infoAsArray.length - 3];
@@ -35,8 +32,6 @@ public class ArmorProperties {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(criticalChance);
-        sb.append("|");
         sb.append(usableLevel);
         sb.append("|");
         sb.append(baseDamage);
@@ -62,14 +57,6 @@ public class ArmorProperties {
 
     public void setBaseDamage(int baseDamage) {
         this.baseDamage = baseDamage;
-    }
-
-    public int getCriticalChance() {
-        return criticalChance;
-    }
-
-    public void setCriticalChance(int criticalChance) {
-        this.criticalChance = criticalChance;
     }
 
     public int[] getMagicDamage() {

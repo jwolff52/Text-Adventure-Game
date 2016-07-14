@@ -4,7 +4,7 @@ package io.github.jwolff52.cyoa.inventory.item.armor;
  * Created by James on 4/7/2016.
  */
 public enum ArmorType {
-    Dagger("Dagger"), ShortSword("ShortSword"), LongSword("LongSword"), ShortBow("ShortBow"), LongBow("LongBow"), CrossBow("CrossBow"), Wand("Staff"), Staff("Staff");
+    Leather("Leather"), Chainmail("Chainmail"), Iron("Iron"), Steel("Steel");
 
     private String asString;
 
