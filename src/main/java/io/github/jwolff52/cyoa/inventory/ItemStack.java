@@ -10,6 +10,10 @@ public class ItemStack {
     private GenericItem genericItem;
     private int quantity;
 
+    public ItemStack() {
+        genericItem = new GenericItem("empty");
+        quantity = 0;
+    }
     public ItemStack(GenericItem genericItem) {
         this.genericItem = genericItem;
         quantity = 1;

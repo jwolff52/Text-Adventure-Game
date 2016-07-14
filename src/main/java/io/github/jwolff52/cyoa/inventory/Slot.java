@@ -8,7 +8,7 @@ public class Slot {
     private ItemStack itemStack;
 
     public Slot() {
-        this.itemStack = null;
+        this.itemStack = new ItemStack();
     }
 
     public Slot(ItemStack itemStack) {

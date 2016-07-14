@@ -17,25 +17,26 @@ public class Inventory {
     }
 
     private void initializeSlots(String playerName, boolean newPlayer) {
+        ArrayList<String> playerInventory;
         if(newPlayer) {
-            
+            playerInventory = SaveUtil.getDefaultPlayerInventory();
         } else {
-            ArrayList<String> playerInventory = SaveUtil.getPlayerInventory(playerName);
-            for (int i = 0; i < slots.length; i++) {
-                if (playerInventory.size() >= i) {
-                    slots[i] = new Slot(
-                            new ItemStack(
-                                    new GenericItem(
-                                            playerInventory.get(i).substring(2)
-                                    ),
-                                    Integer.valueOf(
-                                            playerInventory.get(i).substring(0, 2)
-                                    )
-                            )
-                    );
-                } else {
-                    slots[i] = new Slot();
-                }
+            playerInventory = SaveUtil.getPlayerInventory(playerName);
+        }
+        for (int i = 0; i < slots.length; i++) {
+            if (playerInventory.size() >= i) {
+                slots[i] = new Slot(
+                        new ItemStack(
+                                new GenericItem(
+                                        playerInventory.get(i).substring(3)
+                                ),
+                                Integer.valueOf(
+                                        playerInventory.get(i).substring(0, 2)
+                                )
+                        )
+                );
+            } else {
+                slots[i] = new Slot();
             }
         }
     }
@@ -43,7 +44,7 @@ public class Inventory {
     public ArrayList<String> saveInventory() {
         ArrayList<String> inventory = new ArrayList<>();
         for (Slot s : slots) {
-            inventory.add(String.format("%s%s", s.getItemStack().getQuantity() < 10 ? String.format("0%d", s.getItemStack().getQuantity()) : String.format("%d", s.getItemStack().getQuantity()), s.getItemStack().getGenericItem().toString()));
+            inventory.add(String.format("%s,%s", s.getItemStack().getQuantity() < 10 ? String.format("0%d", s.getItemStack().getQuantity()) : String.format("%d", s.getItemStack().getQuantity()), s.getItemStack().getGenericItem().toString()));
         }
         return inventory;
     }
