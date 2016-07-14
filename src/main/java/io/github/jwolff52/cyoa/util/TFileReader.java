@@ -20,6 +20,7 @@ package io.github.jwolff52.cyoa.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -72,5 +73,15 @@ public class TFileReader {
 			}
 		}
 		return buffer.toString();
+	}
+
+	public static ArrayList<String> readFile(InputStream is) {
+        ArrayList<String> buffer = new ArrayList<>();
+        try (Scanner scanner = new Scanner(is)) {
+            while (scanner.hasNext()) {
+                buffer.add(scanner.nextLine());
+            }
+        }
+        return buffer;
 	}
 }

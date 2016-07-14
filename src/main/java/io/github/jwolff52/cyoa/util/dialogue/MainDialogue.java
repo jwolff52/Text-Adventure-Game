@@ -3,8 +3,10 @@ package io.github.jwolff52.cyoa.util.dialogue;
 import io.github.jwolff52.cyoa.Main;
 import io.github.jwolff52.cyoa.ref.R;
 
+import java.util.ArrayList;
+
 public class MainDialogue {
-    public static String[] getNewGameInfo() {
+    public static ArrayList<String> getNewGameInfo() {
         String[] newGameInfo = new String[6];
 
         // Name
@@ -174,6 +176,10 @@ public class MainDialogue {
         Main.getCommandPrompt().appendLine(String.format("The Old Man: Ah, but of course!", newGameInfo[2]));
         Main.getGameThread().sleep(1000, 3000);
 
-        return newGameInfo;
+        ArrayList<String> info = new ArrayList<>();
+        for(String s : newGameInfo) {
+            info.add(s);
+        }
+        return info;
     }
 }

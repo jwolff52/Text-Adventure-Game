@@ -32,18 +32,43 @@ public class Player {
 			setGold(30);
 			setHealth(100);
 			setExperience(0);
-            inventory = new Inventory(name, level);
-            inventory.add
 		} else {
 			setLevel(Integer.valueOf(playerInfo.get(6)));
 			setGold(Integer.valueOf(playerInfo.get(7)));
 			setHealth(Integer.valueOf(playerInfo.get(8)));
 			setExperience(Integer.valueOf(playerInfo.get(9)));
 		}
+        inventory = new Inventory(name, level, newPlayer);
 		setMaxHealth();
 	}
 
-	public String getName() {
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name);
+        sb.append("\n");
+        sb.append(hometown);
+        sb.append("\n");
+        sb.append(warriorClass);
+        sb.append("\n");
+        sb.append(isMale ? "Male" : "Female");
+        sb.append("\n");
+        sb.append(race);
+        sb.append("\n");
+        sb.append(getAlignmentForStorage());
+        sb.append("\n");
+        sb.append(level);
+        sb.append("\n");
+        sb.append(gold);
+        sb.append("\n");
+        sb.append(health);
+        sb.append("\n");
+        sb.append(experience);
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    public String getName() {
 		return name;
 	}
 
@@ -99,6 +124,15 @@ public class Player {
 			return AlignmentType.Sarcastic.getAsString();
 		}
 	}
+
+    public String getAlignmentForStorage() {
+        StringBuilder sb = new StringBuilder();
+        for (int i : alignment) {
+            sb.append(i);
+            sb.append(",");
+        }
+        return sb.toString().substring(0, sb.toString().length() - 1);
+    }
 	
 	public void setAlignment(String[] args) {
 		for(int i = 0; i < args.length; i++) {

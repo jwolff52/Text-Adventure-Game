@@ -7,6 +7,7 @@ import io.github.jwolff52.cyoa.util.TFileReader;
 import io.github.jwolff52.cyoa.util.dialogue.HelpDialogue;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ChooseYourOwnAdventure implements Runnable {
@@ -47,6 +48,10 @@ public class ChooseYourOwnAdventure implements Runnable {
 
 	public void setPlayer(File file, boolean newPlayer) {
 		player = new Player(TFileReader.readFile(file), newPlayer);
+	}
+
+	public void setPlayer(ArrayList<String> info, boolean newPlayer) {
+		player = new Player(info, newPlayer);
 	}
 
 	public Player getPlayer() {

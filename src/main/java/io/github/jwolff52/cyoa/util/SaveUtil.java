@@ -44,11 +44,11 @@ public class SaveUtil {
     }
 
     private static void newGame() {
-        String[] info = MainDialogue.getNewGameInfo();
-        File newSave = new File(R.SAVE_HOME, String.format("%s%sinfo.txt", info[0], File.separator));
-        newSave.getParentFile().mkdirs();
-        TFileWriter.writeFile(newSave, info);
-        Main.getGameThread().setPlayer(newSave, true);
+        ArrayList<String> info = MainDialogue.getNewGameInfo();
+        File newSave = new File(R.SAVE_HOME, String.format("%s%s", info.get(0), File.separator));
+        newSave.mkdirs();
+        Main.getGameThread().setPlayer(info, true);
+        savePlayer();
     }
 
     public static File[] getFileList() {
@@ -94,6 +94,20 @@ public class SaveUtil {
             }
         }
         return null;
+    }
+
+    public static ArrayList<String> getDefaultPlayerInventory() {
+        return TFileReader.readFile(R.getResourceAsStream("/assets/text/players/default/inventory.txt"));
+    }
+
+    public static void savePlayer() {
+        String playerName = Main.getGameThread().getPlayer().getName();
+        for(File f : savedGames) {
+            if(f.getName().equalsIgnoreCase(playerName)) {
+                TFileWriter.writeFile(new File(f, "info.txt"), Main.getGameThread().getPlayer().toString());
+            }
+        }
+        savePlayerInventory();
     }
 
     public static void savePlayerInventory() {

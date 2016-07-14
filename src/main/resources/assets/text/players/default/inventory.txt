@@ -1,0 +1,2 @@
+01,Dagger of Solitude|Weapon|A dagger given to you by your father.|Your prized treasure.||10|1|2|0|0|0|Dagger
+01,Patchwork Leather|Armor|What remains of your clothes after many years of travelling.||1|1|0|0|0|Leather
