@@ -11,27 +11,31 @@ import java.util.ArrayList;
 public class Inventory {
     private Slot[] slots;
 
-    public Inventory(String playerName, int playerLevel) {
+    public Inventory(String playerName, int playerLevel, boolean newPlayer) {
         slots = new Slot[playerLevel*5 >= 50 ? 50 : playerLevel*5];
-        initializeSlots(playerName);
+        initializeSlots(playerName, newPlayer);
     }
 
-    private void initializeSlots(String playerName) {
-        ArrayList<String> playerInventory = SaveUtil.getPlayerInventory(playerName);
-        for (int i = 0; i < slots.length; i++) {
-            if(playerInventory.size() >= i) {
-                slots[i] = new Slot(
-                        new ItemStack(
-                                new GenericItem(
-                                        playerInventory.get(i).substring(2)
-                                ),
-                                Integer.valueOf(
-                                        playerInventory.get(i).substring(0, 2)
-                                )
-                        )
-                );
-            } else {
-                slots[i] = new Slot();
+    private void initializeSlots(String playerName, boolean newPlayer) {
+        if(newPlayer) {
+            
+        } else {
+            ArrayList<String> playerInventory = SaveUtil.getPlayerInventory(playerName);
+            for (int i = 0; i < slots.length; i++) {
+                if (playerInventory.size() >= i) {
+                    slots[i] = new Slot(
+                            new ItemStack(
+                                    new GenericItem(
+                                            playerInventory.get(i).substring(2)
+                                    ),
+                                    Integer.valueOf(
+                                            playerInventory.get(i).substring(0, 2)
+                                    )
+                            )
+                    );
+                } else {
+                    slots[i] = new Slot();
+                }
             }
         }
     }

@@ -32,6 +32,8 @@ public class Player {
 			setGold(30);
 			setHealth(100);
 			setExperience(0);
+            inventory = new Inventory(name, level);
+            inventory.add
 		} else {
 			setLevel(Integer.valueOf(playerInfo.get(6)));
 			setGold(Integer.valueOf(playerInfo.get(7)));
@@ -120,6 +122,24 @@ public class Player {
 			alignment[2]++;
 		}
 	}
+
+	public static String incrementAlignment(AlignmentType type, String alignmentAsString) {
+        String newAlignment;
+        switch (type) {
+            case Good:
+                newAlignment = "x" + alignmentAsString.substring(alignmentAsString.indexOf(','));
+                newAlignment.replace("x", ((Integer)(Integer.valueOf(alignmentAsString.substring(0,alignmentAsString.indexOf(','))) + 1)).toString());
+                return newAlignment;
+            case Evil:
+                newAlignment = alignmentAsString.substring(0, alignmentAsString.indexOf(',') + 1) + "x" + alignmentAsString.substring(alignmentAsString.indexOf(',', alignmentAsString.indexOf(',') + 1), alignmentAsString.length());
+                newAlignment.replace("x", ((Integer)(Integer.valueOf(alignmentAsString.substring(alignmentAsString.indexOf(',') + 1, alignmentAsString.indexOf(',', alignmentAsString.indexOf(',') + 1))) + 1)).toString());
+                return newAlignment;
+            default:
+                newAlignment = alignmentAsString.substring(0, alignmentAsString.lastIndexOf(',') + 1) + "x";
+                newAlignment.replace("x", ((Integer)(Integer.valueOf(alignmentAsString.substring(alignmentAsString.lastIndexOf(',') + 1)) + 1)).toString());
+                return newAlignment;
+        }
+    }
 
 	public Inventory getInventory() {
 		return inventory;
