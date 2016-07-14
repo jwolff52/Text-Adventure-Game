@@ -1,11 +1,13 @@
 package io.github.jwolff52.cyoa.util.dialogue;
 
 import io.github.jwolff52.cyoa.Main;
+import io.github.jwolff52.cyoa.entity.Player;
 import io.github.jwolff52.cyoa.ref.R;
+import io.github.jwolff52.cyoa.util.AlignmentType;
 
 public class MainDialogue {
     public static String[] getNewGameInfo() {
-        String[] newGameInfo = new String[6];
+        String[] newGameInfo = new String[7];
 
         // Name
         do {
@@ -174,6 +176,27 @@ public class MainDialogue {
         Main.getCommandPrompt().appendLine(String.format("The Old Man: Ah, but of course!", newGameInfo[2]));
         Main.getGameThread().sleep(1000, 3000);
 
+        String input;
+        do {
+            Main.getCommandPrompt().clearScreen();
+            Main.getCommandPrompt().appendLine("The Old Man hands you back your dagger and starts moving toward the door. What do you choose to do?");
+            Main.getGameThread().sleep(200, 500);
+            Main.getCommandPrompt().appendLine("1: Follow the man");
+            Main.getGameThread().sleep(200, 500);
+            Main.getCommandPrompt().appendLine("2: Stab the man");
+            Main.getCommandPrompt().setInputAllowed(true);
+            Main.getGameThread().waitForInput();
+        } while (!Main.getCommandPrompt().isValidInput((input = Main.getCommandPrompt().getLastInput()), "number", 1, 2));
+        Main.getCommandPrompt().setInputAllowed(false);
+        switch (input) {
+            case "1":
+                newGameInfo[5] = Player.incrementAlignment(AlignmentType.Good, newGameInfo[5]);
+                break;
+            case "2":
+                newGameInfo[5] = Player.incrementAlignment(AlignmentType.Evil, newGameInfo[5]);
+                break;
+        }
+        newGameInfo[6] = "30";
         return newGameInfo;
     }
 }
