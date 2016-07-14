@@ -4,7 +4,7 @@ package io.github.jwolff52.cyoa.inventory.item;
  * Created by James on 4/7/2016.
  */
 public enum ItemType {
-    Potion("Potion"), Weapon("Weapon"), Generic("Generic");
+    Armor("Armor"), Potion("Potion"), Weapon("Weapon"), Generic("Generic");
 
     private String asString;
 

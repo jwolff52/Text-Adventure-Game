@@ -45,12 +45,10 @@ public class GenericItem extends AbstractItem {
         sb.append(getName());
         sb.append("|");
         sb.append(getType().getAsString());
-        sb.append("|");
         for (String s : getItemLore()) {
-            sb.append(s);
             sb.append("|");
+            sb.append(s);
         }
-        String asString = sb.toString();
-        return asString.substring(0, asString.length() - 1);
+        return sb.toString();
     }
 }

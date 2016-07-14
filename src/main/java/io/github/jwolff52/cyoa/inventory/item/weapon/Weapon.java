@@ -19,16 +19,11 @@ public class Weapon extends GenericItem {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getName());
+        sb.append(super.toString());
+        sb.append("||");
+        sb.append(properties.toString());
         sb.append("|");
         sb.append(getType().getAsString());
-        sb.append("|");
-        for (String s : getItemLore()) {
-            sb.append(s);
-            sb.append("|");
-        }
-        sb.append("|");
-        sb.append(properties.toString());
         return sb.toString();
     }
 

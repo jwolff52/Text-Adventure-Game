@@ -7,6 +7,11 @@ public class WeaponProperties {
     private int criticalChance;
     private int usableLevel;
     private int baseDamage;
+    /**
+     * [0] - Fire damage
+     * [1] - Ice damage
+     * [2] - Water damage
+     */
     private int[] magicDamage;
 
     public WeaponProperties(int criticalChance, int usableLevel, int baseDamage, int[] magicDamage) {
@@ -25,6 +30,22 @@ public class WeaponProperties {
         for(int i = 3; i < infoAsArray.length; i++) {
             this.magicDamage[i - 3] = Integer.valueOf(infoAsArray[i]);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(criticalChance);
+        sb.append("|");
+        sb.append(usableLevel);
+        sb.append("|");
+        sb.append(baseDamage);
+        for (int i : magicDamage) {
+            sb.append("|");
+            sb.append(i);
+
+        }
+        return sb.toString();
     }
 
     public int getUsableLevel() {
