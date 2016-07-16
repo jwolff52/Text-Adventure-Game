@@ -31,19 +31,23 @@ public class ChooseYourOwnAdventure implements Runnable {
 	}
 
 	public void sleep(long millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			CLogger.logError(e);
-		}
+		if(Main.allowSleep) {
+            try {
+                Thread.sleep(millis);
+            } catch (InterruptedException e) {
+                CLogger.logError(e);
+            }
+        }
 	}
 
 	public void sleep(int variation, long minimum) {
-		try {
-			Thread.sleep(new Random().nextInt(variation) + minimum);
-		} catch (InterruptedException e) {
-			CLogger.logError(e);
-		}
+        if(Main.allowSleep) {
+            try {
+                Thread.sleep(new Random().nextInt(variation) + minimum);
+            } catch (InterruptedException e) {
+                CLogger.logError(e);
+            }
+        }
 	}
 
 	public void setPlayer(File file, boolean newPlayer) {
