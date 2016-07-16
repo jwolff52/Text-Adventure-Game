@@ -24,7 +24,7 @@ public class Inventory {
             playerInventory = SaveUtil.getPlayerInventory(playerName);
         }
         for (int i = 0; i < slots.length; i++) {
-            if (playerInventory.size() >= i) {
+            if (playerInventory.size() > i) {
                 slots[i] = new Slot(
                         new ItemStack(
                                 new GenericItem(

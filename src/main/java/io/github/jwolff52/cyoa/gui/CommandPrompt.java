@@ -170,7 +170,7 @@ public class CommandPrompt extends JFrame {
     }
 
     public boolean isValidInput(String input, Object... args) {
-        if(HelpDialogue.helpScreen(input)) return false;
+        if (HelpDialogue.helpScreen(input)) return false;
         if (args.length > 0) {
             switch (((String) args[0]).toLowerCase()) {
                 case "number":

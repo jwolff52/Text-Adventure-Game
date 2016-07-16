@@ -33,9 +33,9 @@ public class MainDialogue {
             Main.getGameThread().sleep(200, 500);
             Main.getCommandPrompt().appendLine("1: Friendly");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("2: Evil");
+            Main.getCommandPrompt().appendLine("2: Sarcastic");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("3: Sarcastic");
+            Main.getCommandPrompt().appendLine("3: Evil");
             Main.getCommandPrompt().appendLine("\n");
             Main.getCommandPrompt().appendLine(String.format("If you would like to learn more about conversation in %s type \"?\"", R.GAME_NAME));
             Main.getCommandPrompt().setInputAllowed(true);
