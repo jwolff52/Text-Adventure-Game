@@ -22,6 +22,16 @@ public class CommandPrompt extends JFrame {
     private JSplitPane outerSplitPane;
     private JSplitPane innerSplitPane;
     private JPanel infoBarPanel;
+    private JSplitPane infoBarSplitPane;
+    private JPanel infoBarLeftPane;
+    private JPanel infoBarRightPane;
+    private JLabel healthLabel;
+    private JLabel menuLabel;
+    private JLabel inventoryLabel;
+    private JLabel goldLabel;
+    private JLabel healthValueLabel;
+    private JLabel goldValueLabel;
+    private JLabel characterLabel;
 
     private boolean inputAllowed, screenLocked;
     private String lastInput;
@@ -49,6 +59,15 @@ public class CommandPrompt extends JFrame {
         displayAreaScrollPane.setBorder(null);
         cmdArea.setBorder(null);
         cmdAreaScrollPane.setBorder(null);
+        infoBarLeftPane.setBackground(Color.BLACK);
+        infoBarRightPane.setBackground(Color.BLACK);
+        goldLabel.setForeground(cmdArea.getForeground());
+        goldValueLabel.setForeground(cmdArea.getForeground());
+        healthLabel.setForeground(cmdArea.getForeground());
+        healthValueLabel.setForeground(cmdArea.getForeground());
+        inventoryLabel.setForeground(cmdArea.getForeground());
+        menuLabel.setForeground(cmdArea.getForeground());
+        characterLabel.setForeground(cmdArea.getForeground());
         pack();
 
         cmdArea.addKeyListener(new KeyAdapter() {
@@ -211,31 +230,73 @@ public class CommandPrompt extends JFrame {
      */
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
-        mainPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        mainPanel.setBackground(new Color(-8177477));
-        mainPanel.setMinimumSize(new Dimension(600, 400));
-        mainPanel.setPreferredSize(new Dimension(600, 400));
+        mainPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        mainPanel.setBackground(new Color(-12828863));
+        mainPanel.setForeground(new Color(-12828863));
+        mainPanel.setMinimumSize(new Dimension(700, 400));
+        mainPanel.setPreferredSize(new Dimension(700, 400));
         outerSplitPane = new JSplitPane();
         outerSplitPane.setContinuousLayout(true);
-        outerSplitPane.setDividerLocation(0);
+        outerSplitPane.setDividerLocation(25);
         outerSplitPane.setDividerSize(0);
+        outerSplitPane.setForeground(new Color(-12828863));
+        outerSplitPane.setMinimumSize(new Dimension(700, 400));
         outerSplitPane.setOrientation(0);
+        outerSplitPane.setPreferredSize(new Dimension(700, 400));
         mainPanel.add(outerSplitPane);
         infoBarPanel = new JPanel();
         infoBarPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         infoBarPanel.setForeground(new Color(-12828863));
-        infoBarPanel.setMaximumSize(new Dimension(900, 25));
-        infoBarPanel.setMinimumSize(new Dimension(900, 25));
-        infoBarPanel.setPreferredSize(new Dimension(900, 25));
+        infoBarPanel.setMaximumSize(new Dimension(700, 25));
+        infoBarPanel.setMinimumSize(new Dimension(700, 25));
+        infoBarPanel.setOpaque(true);
+        infoBarPanel.setPreferredSize(new Dimension(700, 25));
         outerSplitPane.setLeftComponent(infoBarPanel);
+        infoBarSplitPane = new JSplitPane();
+        infoBarSplitPane.setDividerLocation(350);
+        infoBarSplitPane.setDividerSize(0);
+        infoBarSplitPane.setMinimumSize(new Dimension(700, 25));
+        infoBarSplitPane.setPreferredSize(new Dimension(700, 25));
+        infoBarPanel.add(infoBarSplitPane);
+        infoBarLeftPane = new JPanel();
+        infoBarLeftPane.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
+        infoBarLeftPane.setMinimumSize(new Dimension(350, 25));
+        infoBarLeftPane.setPreferredSize(new Dimension(350, 25));
+        infoBarSplitPane.setLeftComponent(infoBarLeftPane);
+        healthLabel = new JLabel();
+        healthLabel.setText("Health:");
+        infoBarLeftPane.add(healthLabel);
+        healthValueLabel = new JLabel();
+        healthValueLabel.setText("0");
+        infoBarLeftPane.add(healthValueLabel);
+        goldLabel = new JLabel();
+        goldLabel.setText("Gold:");
+        infoBarLeftPane.add(goldLabel);
+        goldValueLabel = new JLabel();
+        goldValueLabel.setText("0");
+        infoBarLeftPane.add(goldValueLabel);
+        infoBarRightPane = new JPanel();
+        infoBarRightPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 0));
+        infoBarRightPane.setMinimumSize(new Dimension(350, 25));
+        infoBarRightPane.setPreferredSize(new Dimension(350, 25));
+        infoBarSplitPane.setRightComponent(infoBarRightPane);
+        characterLabel = new JLabel();
+        characterLabel.setText("Character");
+        infoBarRightPane.add(characterLabel);
+        inventoryLabel = new JLabel();
+        inventoryLabel.setText("Inventory");
+        infoBarRightPane.add(inventoryLabel);
+        menuLabel = new JLabel();
+        menuLabel.setText("Menu");
+        infoBarRightPane.add(menuLabel);
         innerSplitPane = new JSplitPane();
         innerSplitPane.setContinuousLayout(true);
-        innerSplitPane.setDividerLocation(375);
+        innerSplitPane.setDividerLocation(350);
         innerSplitPane.setDividerSize(0);
         innerSplitPane.setFocusable(false);
-        innerSplitPane.setMinimumSize(new Dimension(900, 400));
+        innerSplitPane.setMinimumSize(new Dimension(700, 375));
         innerSplitPane.setOrientation(0);
-        innerSplitPane.setPreferredSize(new Dimension(600, 400));
+        innerSplitPane.setPreferredSize(new Dimension(700, 375));
         outerSplitPane.setRightComponent(innerSplitPane);
         cmdAreaScrollPane = new JScrollPane();
         cmdAreaScrollPane.setHorizontalScrollBarPolicy(31);
@@ -247,12 +308,12 @@ public class CommandPrompt extends JFrame {
         cmdArea.setCaretColor(new Color(-8212805));
         cmdArea.setFont(new Font("Courier New", cmdArea.getFont().getStyle(), cmdArea.getFont().getSize()));
         cmdArea.setForeground(new Color(-8212805));
-        cmdArea.setMinimumSize(new Dimension(900, 25));
-        cmdArea.setPreferredSize(new Dimension(900, 25));
+        cmdArea.setMinimumSize(new Dimension(700, 25));
+        cmdArea.setPreferredSize(new Dimension(700, 25));
         cmdAreaScrollPane.setViewportView(cmdArea);
         displayAreaScrollPane = new JScrollPane();
         displayAreaScrollPane.setHorizontalScrollBarPolicy(31);
-        displayAreaScrollPane.setMinimumSize(new Dimension(900, 375));
+        displayAreaScrollPane.setMinimumSize(new Dimension(900, 350));
         displayAreaScrollPane.setVerticalScrollBarPolicy(21);
         innerSplitPane.setLeftComponent(displayAreaScrollPane);
         displayArea = new JTextArea();
@@ -264,8 +325,8 @@ public class CommandPrompt extends JFrame {
         displayArea.setFont(new Font("Courier New", displayArea.getFont().getStyle(), displayArea.getFont().getSize()));
         displayArea.setForeground(new Color(-8212805));
         displayArea.setMargin(new Insets(0, 0, 0, 0));
-        displayArea.setMinimumSize(new Dimension(900, 375));
-        displayArea.setPreferredSize(new Dimension(900, 375));
+        displayArea.setMinimumSize(new Dimension(700, 350));
+        displayArea.setPreferredSize(new Dimension(700, 350));
         displayAreaScrollPane.setViewportView(displayArea);
     }
 
@@ -275,6 +336,4 @@ public class CommandPrompt extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
-
-
 }
