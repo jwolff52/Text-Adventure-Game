@@ -1,5 +1,7 @@
 package io.github.jwolff52.cyoa.gui.Dialogs;
 
+import io.github.jwolff52.cyoa.Main;
+
 import javax.swing.*;
 
 public abstract class CDialog extends JDialog implements Runnable{
@@ -24,5 +26,11 @@ public abstract class CDialog extends JDialog implements Runnable{
 
     public boolean getConfirm() {
         return confirm;
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        this.setLocationRelativeTo(Main.guiController.getCommandPrompt());
+        super.setVisible(b);
     }
 }

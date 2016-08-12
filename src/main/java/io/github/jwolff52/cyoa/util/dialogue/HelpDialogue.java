@@ -16,93 +16,93 @@ public class HelpDialogue {
             return false;
         }
 
-        Main.frameController.getCommandPrompt().clearScreen();
+        Main.guiController.getCommandPrompt().clearScreen();
 
         if (!input.matches("(more)")) {
-            Main.frameController.getCommandPrompt().appendLine("When you are presented with multiple options each option will be prepended with a number, type in that number then press enter to select that option.");
-            Main.frameController.getCommandPrompt().appendLine("\n");
+            Main.guiController.getCommandPrompt().appendLine("When you are presented with multiple options each option will be prepended with a number, type in that number then press enter to select that option.");
+            Main.guiController.getCommandPrompt().appendLine("\n");
         }
         do {
-            Main.frameController.getCommandPrompt().appendLine("What would you like to learn more about?");
-            Main.frameController.getCommandPrompt().appendLine("1: Conversation");
-            Main.frameController.getCommandPrompt().appendLine("2: Battling");
-            Main.frameController.getCommandPrompt().appendLine("3: Weapons");
-            Main.frameController.getCommandPrompt().appendLine("\n");
-            Main.frameController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
-            boolean isScreenLocked = Main.frameController.getCommandPrompt().isScreenLocked();
+            Main.guiController.getCommandPrompt().appendLine("What would you like to learn more about?");
+            Main.guiController.getCommandPrompt().appendLine("1: Conversation");
+            Main.guiController.getCommandPrompt().appendLine("2: Battling");
+            Main.guiController.getCommandPrompt().appendLine("3: Weapons");
+            Main.guiController.getCommandPrompt().appendLine("\n");
+            Main.guiController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+            boolean isScreenLocked = Main.guiController.getCommandPrompt().isScreenLocked();
             if (!isScreenLocked) {
-                Main.frameController.getCommandPrompt().setScreenLocked(true);
+                Main.guiController.getCommandPrompt().setScreenLocked(true);
             }
-            Main.frameController.getCommandPrompt().setInputAllowed(true);
+            Main.guiController.getCommandPrompt().setInputAllowed(true);
             Main.getGameThread().waitForInput();
-            Main.frameController.getCommandPrompt().setInputAllowed(false);
-            switch (Main.frameController.getCommandPrompt().getLastInput().toLowerCase()) {
+            Main.guiController.getCommandPrompt().setInputAllowed(false);
+            switch (Main.guiController.getCommandPrompt().getLastInput().toLowerCase()) {
                 case "1": //x - (x - y - z)
                     do {
-                        Main.frameController.getCommandPrompt().clearScreen();
-                        Main.frameController.getCommandPrompt().appendLine("During most conversation you will be given three tones to respond in, friendly, evil, and neutral.");
-                        Main.frameController.getCommandPrompt().appendLine("Based on these responses there are three values calculated for your character that influence how potentially friendly NPCs will act around you.");
-                        Main.frameController.getCommandPrompt().appendLine("\n");
-                        Main.frameController.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
-                        Main.frameController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
-                        Main.frameController.getCommandPrompt().setInputAllowed(true);
+                        Main.guiController.getCommandPrompt().clearScreen();
+                        Main.guiController.getCommandPrompt().appendLine("During most conversation you will be given three tones to respond in, friendly, evil, and neutral.");
+                        Main.guiController.getCommandPrompt().appendLine("Based on these responses there are three values calculated for your character that influence how potentially friendly NPCs will act around you.");
+                        Main.guiController.getCommandPrompt().appendLine("\n");
+                        Main.guiController.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
+                        Main.guiController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+                        Main.guiController.getCommandPrompt().setInputAllowed(true);
                         Main.getGameThread().waitForInput();
-                        Main.frameController.getCommandPrompt().setInputAllowed(false);
-                        if (Main.frameController.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
-                            Main.frameController.getCommandPrompt().setScreenLocked(isScreenLocked);
+                        Main.guiController.getCommandPrompt().setInputAllowed(false);
+                        if (Main.guiController.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
+                            Main.guiController.getCommandPrompt().setScreenLocked(isScreenLocked);
                             return true;
                         }
-                        if (Main.frameController.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
-                            Main.frameController.getCommandPrompt().setScreenLocked(isScreenLocked);
+                        if (Main.guiController.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
+                            Main.guiController.getCommandPrompt().setScreenLocked(isScreenLocked);
                             return helpScreen("more");
                         } else {
-                            Main.frameController.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
+                            Main.guiController.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
                             Main.getGameThread().sleep(1500);
                         }
                     } while (true);
                 case "2":
                     do {
                         //TODO: How is battling going to work...
-                        Main.frameController.getCommandPrompt().clearScreen();
-                        Main.frameController.getCommandPrompt().appendLine("TODO");
-                        Main.frameController.getCommandPrompt().appendLine("\n");
-                        Main.frameController.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
-                        Main.frameController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
-                        Main.frameController.getCommandPrompt().setInputAllowed(true);
+                        Main.guiController.getCommandPrompt().clearScreen();
+                        Main.guiController.getCommandPrompt().appendLine("TODO");
+                        Main.guiController.getCommandPrompt().appendLine("\n");
+                        Main.guiController.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
+                        Main.guiController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+                        Main.guiController.getCommandPrompt().setInputAllowed(true);
                         Main.getGameThread().waitForInput();
-                        Main.frameController.getCommandPrompt().setInputAllowed(false);
-                        if (Main.frameController.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
-                            Main.frameController.getCommandPrompt().setScreenLocked(isScreenLocked);
+                        Main.guiController.getCommandPrompt().setInputAllowed(false);
+                        if (Main.guiController.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
+                            Main.guiController.getCommandPrompt().setScreenLocked(isScreenLocked);
                             return true;
                         }
-                        if (Main.frameController.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
-                            Main.frameController.getCommandPrompt().setScreenLocked(isScreenLocked);
+                        if (Main.guiController.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
+                            Main.guiController.getCommandPrompt().setScreenLocked(isScreenLocked);
                             return helpScreen("more");
                         } else {
-                            Main.frameController.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
+                            Main.guiController.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
                             Main.getGameThread().sleep(1500);
                         }
                     } while (true);
                 case "3":
                     do {
                         //TODO: How are weapons going to work...
-                        Main.frameController.getCommandPrompt().clearScreen();
-                        Main.frameController.getCommandPrompt().appendLine("TODO");
-                        Main.frameController.getCommandPrompt().appendLine("\n");
-                        Main.frameController.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
-                        Main.frameController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
-                        Main.frameController.getCommandPrompt().setInputAllowed(true);
+                        Main.guiController.getCommandPrompt().clearScreen();
+                        Main.guiController.getCommandPrompt().appendLine("TODO");
+                        Main.guiController.getCommandPrompt().appendLine("\n");
+                        Main.guiController.getCommandPrompt().appendLine("Type \"more\" to return to the help screen.");
+                        Main.guiController.getCommandPrompt().appendLine("Type \"q\" or \"quit\" to return to the game.");
+                        Main.guiController.getCommandPrompt().setInputAllowed(true);
                         Main.getGameThread().waitForInput();
-                        Main.frameController.getCommandPrompt().setInputAllowed(false);
-                        if (Main.frameController.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
-                            Main.frameController.getCommandPrompt().setScreenLocked(isScreenLocked);
+                        Main.guiController.getCommandPrompt().setInputAllowed(false);
+                        if (Main.guiController.getCommandPrompt().getLastInput().toLowerCase().startsWith("q")) {
+                            Main.guiController.getCommandPrompt().setScreenLocked(isScreenLocked);
                             return true;
                         }
-                        if (Main.frameController.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
-                            Main.frameController.getCommandPrompt().setScreenLocked(isScreenLocked);
+                        if (Main.guiController.getCommandPrompt().getLastInput().toLowerCase().startsWith("more")) {
+                            Main.guiController.getCommandPrompt().setScreenLocked(isScreenLocked);
                             return helpScreen("more");
                         } else {
-                            Main.frameController.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
+                            Main.guiController.getCommandPrompt().appendLine("I'm sorry I didn't quite get that...");
                             Main.getGameThread().sleep(1500);
                         }
                     } while (true);
@@ -110,9 +110,9 @@ public class HelpDialogue {
                 case "quit":
                     return true;
                 default:
-                    Main.frameController.getCommandPrompt().appendLine("I'm sorry I didn't quite catch that...");
+                    Main.guiController.getCommandPrompt().appendLine("I'm sorry I didn't quite catch that...");
                     Main.getGameThread().sleep(1500);
-                    Main.frameController.getCommandPrompt().clearScreen();
+                    Main.guiController.getCommandPrompt().clearScreen();
             }
         } while(true);
     }
@@ -122,7 +122,7 @@ public class HelpDialogue {
         String line;
         try {
             while ((line = reader.readLine()) != null) {
-                Main.frameController.getCommandPrompt().appendLine(line);
+                Main.guiController.getCommandPrompt().appendLine(line);
                 Main.getGameThread().sleep(1000);
             }
         } catch (IOException e) {
@@ -132,20 +132,20 @@ public class HelpDialogue {
     }
 
     public static void listSaves() {
-        Main.frameController.getCommandPrompt().appendLine("Choose a save");
-        Main.frameController.getCommandPrompt().appendLine("\n");
-        Main.frameController.getCommandPrompt().appendLines(SaveUtil.getFormattedFileListAsArray());
-        Main.frameController.getCommandPrompt().appendLine("\n");
-        Main.frameController.getCommandPrompt().appendLine("Type \"?\" or \"help\" at any time to view the help screen!", "");
+        Main.guiController.getCommandPrompt().appendLine("Choose a save");
+        Main.guiController.getCommandPrompt().appendLine("\n");
+        Main.guiController.getCommandPrompt().appendLines(SaveUtil.getFormattedFileListAsArray());
+        Main.guiController.getCommandPrompt().appendLine("\n");
+        Main.guiController.getCommandPrompt().appendLine("Type \"?\" or \"help\" at any time to view the help screen!", "");
     }
 
     public static void prologue() {
-        Main.frameController.getCommandPrompt().clearScreen();
+        Main.guiController.getCommandPrompt().clearScreen();
         BufferedReader reader = new BufferedReader(new InputStreamReader(R.getResourceAsStream("/assets/text/prologue.txt")));
         String line;
         try {
             while ((line = reader.readLine()) != null) {
-                Main.frameController.getCommandPrompt().appendLine(line);
+                Main.guiController.getCommandPrompt().appendLine(line);
             }
         } catch (IOException e) {
             CLogger.logError(e);

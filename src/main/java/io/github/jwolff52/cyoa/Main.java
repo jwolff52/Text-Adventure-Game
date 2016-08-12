@@ -1,18 +1,18 @@
 package io.github.jwolff52.cyoa;
 
-import io.github.jwolff52.cyoa.gui.FrameController;
+import io.github.jwolff52.cyoa.gui.GUIController;
 import io.github.jwolff52.cyoa.util.CLogger;
 import io.github.jwolff52.cyoa.util.SaveUtil;
 
 public class Main extends Thread {
 
-    public static FrameController frameController;
+    public static GUIController guiController;
     private static ChooseYourOwnAdventure gameThread;
 
     public static void main(String[] args) {
         CLogger.init();
         SaveUtil.init();
-        frameController = new FrameController();
+        guiController = new GUIController();
         gameThread = new ChooseYourOwnAdventure();
         gameThread.start();
     }
@@ -23,7 +23,7 @@ public class Main extends Thread {
 
     public static boolean shutdown() {
         if(gameThread.saveGame()) {
-            frameController.shutdown();
+            guiController.shutdown();
             System.exit(0);
         }
         return false;

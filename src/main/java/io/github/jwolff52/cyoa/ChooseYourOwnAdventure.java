@@ -17,16 +17,16 @@ public class ChooseYourOwnAdventure implements Runnable {
 
 	@Override
 	public void run() {
-		Main.frameController.getCommandPrompt().setScreenLocked(true);
+		Main.guiController.getCommandPrompt().setScreenLocked(true);
 //		HelpDialogue.titleScreen(); // Commented out so I don't have to watch it every time I test the game
-		Main.frameController.getCommandPrompt().setInputAllowed(false);
+		Main.guiController.getCommandPrompt().setInputAllowed(false);
 		do {
-			Main.frameController.getCommandPrompt().clearScreen();
+			Main.guiController.getCommandPrompt().clearScreen();
 			HelpDialogue.listSaves();
-			Main.frameController.getCommandPrompt().setInputAllowed(true);
+			Main.guiController.getCommandPrompt().setInputAllowed(true);
 			waitForInput();
 		} while (!SaveUtil.chooseSave());
-		Main.frameController.getCommandPrompt().setInputAllowed(false);
+		Main.guiController.getCommandPrompt().setInputAllowed(false);
 	}
 
 	public void sleep(long millis) {

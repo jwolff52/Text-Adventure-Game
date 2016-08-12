@@ -11,7 +11,7 @@ public class DelayedActionUtil {
 	            } catch (InterruptedException e) {
 	                CLogger.logError(e);
 	            }
-	            Main.frameController.getCommandPrompt().setCmdText(cmdText);
+	            Main.guiController.getCommandPrompt().setCmdText(cmdText);
 			}
         }).start();
     }

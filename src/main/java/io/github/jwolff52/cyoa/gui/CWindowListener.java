@@ -11,7 +11,7 @@ public class CWindowListener implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        Main.frameController.getCloseConfirmDialog().setVisible(true);
+        Main.guiController.getCloseConfirmDialog().setVisible(true);
     }
 
     @Override

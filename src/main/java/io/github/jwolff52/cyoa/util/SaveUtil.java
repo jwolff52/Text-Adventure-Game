@@ -21,13 +21,13 @@ public class SaveUtil {
     }
 
     public static boolean chooseSave() {
-        Main.frameController.getCommandPrompt().setInputAllowed(false);
-        if(HelpDialogue.helpScreen(Main.frameController.getCommandPrompt().getLastInput())) {
+        Main.guiController.getCommandPrompt().setInputAllowed(false);
+        if(HelpDialogue.helpScreen(Main.guiController.getCommandPrompt().getLastInput())) {
             return false;
         }
         int save;
         try{
-            save = Integer.valueOf(Main.frameController.getCommandPrompt().getLastInput());
+            save = Integer.valueOf(Main.guiController.getCommandPrompt().getLastInput());
         } catch (NumberFormatException e) {
             return false;
         }
