@@ -9,37 +9,37 @@ public class MainDialogue {
 
         // Name
         do {
-            Main.getCommandPrompt().clearScreen();
-            Main.getCommandPrompt().appendLine("The Old Man: What is your name?");
-            Main.getCommandPrompt().setInputAllowed(true);
-            Main.getCommandPrompt().setScreenLocked(true);
+            Main.frameController.getCommandPrompt().clearScreen();
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: What is your name?");
+            Main.frameController.getCommandPrompt().setInputAllowed(true);
+            Main.frameController.getCommandPrompt().setScreenLocked(true);
             Main.getGameThread().waitForInput();
-        } while (!Main.getCommandPrompt().isValidInput(newGameInfo[0] = Main.getCommandPrompt().getLastInput(), "alphanumeric"));
-        Main.getCommandPrompt().setInputAllowed(false);
-        Main.getCommandPrompt().appendLine(String.format("My name is %s", newGameInfo[0]));
+        } while (!Main.frameController.getCommandPrompt().isValidInput(newGameInfo[0] = Main.frameController.getCommandPrompt().getLastInput(), "alphanumeric"));
+        Main.frameController.getCommandPrompt().setInputAllowed(false);
+        Main.frameController.getCommandPrompt().appendLine(String.format("My name is %s", newGameInfo[0]));
         Main.getGameThread().sleep(1000, 3000);
-        Main.getCommandPrompt().appendLine(String.format("The Old Man: It is a pleasure to meet you %s.", newGameInfo[0]));
+        Main.frameController.getCommandPrompt().appendLine(String.format("The Old Man: It is a pleasure to meet you %s.", newGameInfo[0]));
         Main.getGameThread().sleep(1000, 3000);
 
         // AlignmentType
         do {
-            Main.getCommandPrompt().clearScreen();
-            Main.getCommandPrompt().appendLine("The Old Man: What are you doing in my barn?");
+            Main.frameController.getCommandPrompt().clearScreen();
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: What are you doing in my barn?");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("");
-            Main.getCommandPrompt().appendLine("How would you like to respond?");
+            Main.frameController.getCommandPrompt().appendLine("");
+            Main.frameController.getCommandPrompt().appendLine("How would you like to respond?");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("1: Friendly");
+            Main.frameController.getCommandPrompt().appendLine("1: Friendly");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("2: Evil");
+            Main.frameController.getCommandPrompt().appendLine("2: Evil");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("3: Sarcastic");
-            Main.getCommandPrompt().appendLine("\n");
-            Main.getCommandPrompt().appendLine(String.format("If you would like to learn more about conversation in %s type \"?\"", R.GAME_NAME));
-            Main.getCommandPrompt().setInputAllowed(true);
+            Main.frameController.getCommandPrompt().appendLine("3: Sarcastic");
+            Main.frameController.getCommandPrompt().appendLine("\n");
+            Main.frameController.getCommandPrompt().appendLine(String.format("If you would like to learn more about conversation in %s type \"?\"", R.GAME_NAME));
+            Main.frameController.getCommandPrompt().setInputAllowed(true);
             Main.getGameThread().waitForInput();
-        } while (!Main.getCommandPrompt().isValidInput(newGameInfo[5] = Main.getCommandPrompt().getLastInput(), "number", 1, 3));
-        Main.getCommandPrompt().setInputAllowed(false);
+        } while (!Main.frameController.getCommandPrompt().isValidInput(newGameInfo[5] = Main.frameController.getCommandPrompt().getLastInput(), "number", 1, 3));
+        Main.frameController.getCommandPrompt().setInputAllowed(false);
         switch (newGameInfo[5]) {
             case "1":
                 newGameInfo[5] = "1,0,0";
@@ -52,54 +52,54 @@ public class MainDialogue {
                 break;
         }
         if (newGameInfo[5].startsWith("1")) {
-            Main.getCommandPrompt().appendLine(String.format("%s: I am a peaceful traveler, seeking to become a great warrior!", newGameInfo[0]));
+            Main.frameController.getCommandPrompt().appendLine(String.format("%s: I am a peaceful traveler, seeking to become a great warrior!", newGameInfo[0]));
             Main.getGameThread().sleep(1000, 3000);
-            Main.getCommandPrompt().appendLine("The Old Man: Ah, wonderful! Perhaps you could provide some assistance to me after I ask you a few more questions.");
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: Ah, wonderful! Perhaps you could provide some assistance to me after I ask you a few more questions.");
         } else if (newGameInfo[5].endsWith("1")) {
-            Main.getCommandPrompt().appendLine(String.format("%s: Move out of the way grandpa, I have got things to do!", newGameInfo[0]));
+            Main.frameController.getCommandPrompt().appendLine(String.format("%s: Move out of the way grandpa, I have got things to do!", newGameInfo[0]));
             Main.getGameThread().sleep(1000, 3000);
-            Main.getCommandPrompt().appendLine("The Old Man: Wait! You must not go out there I need to ask you a few more questions!");
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: Wait! You must not go out there I need to ask you a few more questions!");
         } else {
-            Main.getCommandPrompt().appendLine(String.format("%s: Oh me? I'm a little horse", newGameInfo[0]));
+            Main.frameController.getCommandPrompt().appendLine(String.format("%s: Oh me? I'm a little horse", newGameInfo[0]));
             Main.getGameThread().sleep(1000, 3000);
-            Main.getCommandPrompt().appendLine("The Old Man: ...");
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: ...");
             Main.getGameThread().sleep(1000);
-            Main.getCommandPrompt().appendLine("The Old Man: ...");
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: ...");
             Main.getGameThread().sleep(1000);
-            Main.getCommandPrompt().appendLine("The Old Man: Anyway.");
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: Anyway.");
         }
         Main.getGameThread().sleep(1000, 3000);
 
         // Home Town
         do {
-            Main.getCommandPrompt().clearScreen();
-            Main.getCommandPrompt().appendLine("The Old Man: From where dost thou hail from?");
-            Main.getCommandPrompt().setInputAllowed(true);
+            Main.frameController.getCommandPrompt().clearScreen();
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: From where dost thou hail from?");
+            Main.frameController.getCommandPrompt().setInputAllowed(true);
             Main.getGameThread().waitForInput();
-        } while (!Main.getCommandPrompt().isValidInput(newGameInfo[1] = Main.getCommandPrompt().getLastInput(), "alphanumeric"));
-        Main.getCommandPrompt().setInputAllowed(false);
-        Main.getCommandPrompt().appendLine(String.format("%s: I hail from %s.", newGameInfo[0], newGameInfo[1]));
+        } while (!Main.frameController.getCommandPrompt().isValidInput(newGameInfo[1] = Main.frameController.getCommandPrompt().getLastInput(), "alphanumeric"));
+        Main.frameController.getCommandPrompt().setInputAllowed(false);
+        Main.frameController.getCommandPrompt().appendLine(String.format("%s: I hail from %s.", newGameInfo[0], newGameInfo[1]));
         Main.getGameThread().sleep(1000, 3000);
-        Main.getCommandPrompt().appendLine(String.format("The Old Man: I have heard many a tale of %s, welcome to Fenhelm", newGameInfo[1]));
+        Main.frameController.getCommandPrompt().appendLine(String.format("The Old Man: I have heard many a tale of %s, welcome to Fenhelm", newGameInfo[1]));
         Main.getGameThread().sleep(1000, 3000);
 
         // Class
         do {
-            Main.getCommandPrompt().clearScreen();
-            Main.getCommandPrompt().appendLine("The Old Man: You appear to be a warrior, what is your fancy in battle?");
+            Main.frameController.getCommandPrompt().clearScreen();
+            Main.frameController.getCommandPrompt().appendLine("The Old Man: You appear to be a warrior, what is your fancy in battle?");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("1: Fighter");
+            Main.frameController.getCommandPrompt().appendLine("1: Fighter");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("2: Ranger");
+            Main.frameController.getCommandPrompt().appendLine("2: Ranger");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("3: Wizard");
+            Main.frameController.getCommandPrompt().appendLine("3: Wizard");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("4: Rogue");
-            Main.getCommandPrompt().setInputAllowed(true);
-            Main.getCommandPrompt().setScreenLocked(true);
+            Main.frameController.getCommandPrompt().appendLine("4: Rogue");
+            Main.frameController.getCommandPrompt().setInputAllowed(true);
+            Main.frameController.getCommandPrompt().setScreenLocked(true);
             Main.getGameThread().waitForInput();
-        } while (!Main.getCommandPrompt().isValidInput((newGameInfo[2] = Main.getCommandPrompt().getLastInput()), "number", 1, 4));
-        Main.getCommandPrompt().setInputAllowed(false);
+        } while (!Main.frameController.getCommandPrompt().isValidInput((newGameInfo[2] = Main.frameController.getCommandPrompt().getLastInput()), "number", 1, 4));
+        Main.frameController.getCommandPrompt().setInputAllowed(false);
         switch (newGameInfo[2]) {
             case "1":
                 newGameInfo[2] = "Fighter";
@@ -114,23 +114,23 @@ public class MainDialogue {
                 newGameInfo[2] = "Rogue";
                 break;
         }
-        Main.getCommandPrompt().appendLine(String.format("%s: I am a %s!", newGameInfo[0], newGameInfo[2]));
+        Main.frameController.getCommandPrompt().appendLine(String.format("%s: I am a %s!", newGameInfo[0], newGameInfo[2]));
         Main.getGameThread().sleep(1000, 3000);
-        Main.getCommandPrompt().appendLine("The Old Man: Great! Perhaps you could help me deal with the pack of wolves outside my barn, but first...");
+        Main.frameController.getCommandPrompt().appendLine("The Old Man: Great! Perhaps you could help me deal with the pack of wolves outside my barn, but first...");
         Main.getGameThread().sleep(1000, 3000);
 
         // Gender
         do {
-            Main.getCommandPrompt().clearScreen();
-            Main.getCommandPrompt().appendLine(String.format("The Old Man: Forgive me %s for I cannot see very well in my old age, but what is your gender?", newGameInfo[0]));
+            Main.frameController.getCommandPrompt().clearScreen();
+            Main.frameController.getCommandPrompt().appendLine(String.format("The Old Man: Forgive me %s for I cannot see very well in my old age, but what is your gender?", newGameInfo[0]));
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("1: Male");
+            Main.frameController.getCommandPrompt().appendLine("1: Male");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("2: Female");
-            Main.getCommandPrompt().setInputAllowed(true);
+            Main.frameController.getCommandPrompt().appendLine("2: Female");
+            Main.frameController.getCommandPrompt().setInputAllowed(true);
             Main.getGameThread().waitForInput();
-        } while (!Main.getCommandPrompt().isValidInput((newGameInfo[3] = Main.getCommandPrompt().getLastInput()), "number", 1, 2));
-        Main.getCommandPrompt().setInputAllowed(false);
+        } while (!Main.frameController.getCommandPrompt().isValidInput((newGameInfo[3] = Main.frameController.getCommandPrompt().getLastInput()), "number", 1, 2));
+        Main.frameController.getCommandPrompt().setInputAllowed(false);
         switch (newGameInfo[3]) {
             case "1":
                 newGameInfo[3] = "Male";
@@ -139,25 +139,25 @@ public class MainDialogue {
                 newGameInfo[3] = "Female";
                 break;
         }
-        Main.getCommandPrompt().appendLine(String.format("%s: I am %s", newGameInfo[0], newGameInfo[3]));
+        Main.frameController.getCommandPrompt().appendLine(String.format("%s: I am %s", newGameInfo[0], newGameInfo[3]));
         Main.getGameThread().sleep(1000, 3000);
-        Main.getCommandPrompt().appendLine(String.format("The Old Man: Thank you for your cooperation up to this point %s, I have but one more question for you.", newGameInfo[0]));
+        Main.frameController.getCommandPrompt().appendLine(String.format("The Old Man: Thank you for your cooperation up to this point %s, I have but one more question for you.", newGameInfo[0]));
         Main.getGameThread().sleep(1000, 3000);
 
         // Race
         do {
-            Main.getCommandPrompt().clearScreen();
-            Main.getCommandPrompt().appendLine(String.format("The Old Man: What race are you %s?", newGameInfo[3].startsWith("M") ? "sir" : "madam"));
+            Main.frameController.getCommandPrompt().clearScreen();
+            Main.frameController.getCommandPrompt().appendLine(String.format("The Old Man: What race are you %s?", newGameInfo[3].startsWith("M") ? "sir" : "madam"));
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("1: Elf");
+            Main.frameController.getCommandPrompt().appendLine("1: Elf");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("2: Dwarf");
+            Main.frameController.getCommandPrompt().appendLine("2: Dwarf");
             Main.getGameThread().sleep(200, 500);
-            Main.getCommandPrompt().appendLine("3: Human");
-            Main.getCommandPrompt().setInputAllowed(true);
+            Main.frameController.getCommandPrompt().appendLine("3: Human");
+            Main.frameController.getCommandPrompt().setInputAllowed(true);
             Main.getGameThread().waitForInput();
-        } while (!Main.getCommandPrompt().isValidInput((newGameInfo[4] = Main.getCommandPrompt().getLastInput()), "number", 1, 3));
-        Main.getCommandPrompt().setInputAllowed(false);
+        } while (!Main.frameController.getCommandPrompt().isValidInput((newGameInfo[4] = Main.frameController.getCommandPrompt().getLastInput()), "number", 1, 3));
+        Main.frameController.getCommandPrompt().setInputAllowed(false);
         switch (newGameInfo[4]) {
             case "1":
                 newGameInfo[4] = "Elf";
@@ -169,9 +169,9 @@ public class MainDialogue {
                 newGameInfo[4] = "Human";
                 break;
         }
-        Main.getCommandPrompt().appendLine(String.format("%s: I am a%s %s", newGameInfo[0], newGameInfo[4].toLowerCase().startsWith("e") ? "n" : "", newGameInfo[4]));
+        Main.frameController.getCommandPrompt().appendLine(String.format("%s: I am a%s %s", newGameInfo[0], newGameInfo[4].toLowerCase().startsWith("e") ? "n" : "", newGameInfo[4]));
         Main.getGameThread().sleep(1000, 3000);
-        Main.getCommandPrompt().appendLine(String.format("The Old Man: Ah, but of course!", newGameInfo[2]));
+        Main.frameController.getCommandPrompt().appendLine(String.format("The Old Man: Ah, but of course!", newGameInfo[2]));
         Main.getGameThread().sleep(1000, 3000);
 
         return newGameInfo;

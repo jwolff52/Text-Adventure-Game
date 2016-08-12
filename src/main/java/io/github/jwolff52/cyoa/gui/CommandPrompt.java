@@ -7,13 +7,14 @@ import io.github.jwolff52.cyoa.util.DelayedActionUtil;
 import io.github.jwolff52.cyoa.util.dialogue.HelpDialogue;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
-public class CommandPrompt extends JFrame {
+public class CommandPrompt extends CFrame {
     private JTextArea displayArea;
     private JPanel mainPanel;
     private JTextField cmdArea;
@@ -32,11 +33,14 @@ public class CommandPrompt extends JFrame {
     private JLabel healthValueLabel;
     private JLabel goldValueLabel;
     private JLabel characterLabel;
+    private JProgressBar experienceProgressBar;
 
     private boolean inputAllowed, screenLocked;
     private String lastInput;
+    private final int MAX_CHARACTERS_PER_LINE = 85;
 
     public CommandPrompt(boolean inputAllowed) {
+        super();
         setInputAllowed(inputAllowed);
         setScreenLocked(false);
         setLastInput("");
@@ -52,9 +56,9 @@ public class CommandPrompt extends JFrame {
         }
         this.setTitle(R.GAME_NAME);
         this.setContentPane(mainPanel);
-        this.setSize(900, 450);
         this.setResizable(false);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new CWindowListener());
         displayArea.setBorder(null);
         displayAreaScrollPane.setBorder(null);
         cmdArea.setBorder(null);
@@ -68,6 +72,8 @@ public class CommandPrompt extends JFrame {
         inventoryLabel.setForeground(cmdArea.getForeground());
         menuLabel.setForeground(cmdArea.getForeground());
         characterLabel.setForeground(cmdArea.getForeground());
+        experienceProgressBar.setBackground(Color.BLACK);
+        experienceProgressBar.setForeground(cmdArea.getForeground());
         pack();
 
         cmdArea.addKeyListener(new KeyAdapter() {
@@ -93,7 +99,52 @@ public class CommandPrompt extends JFrame {
             }
         });
 
+        characterLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    //TODO: Open Character Screen
+                    System.out.println("Character");
+                }
+            }
+        });
+
+        inventoryLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    //TODO: Open Inventory
+                    System.out.println("Inventory");
+                }
+            }
+        });
+
+        menuLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    //TODO: Open Menu
+                    System.out.println("Menu");
+                }
+            }
+        });
+
         this.setVisible(true);
+    }
+
+    @Override
+    public void run() {
+    }
+
+    public void setHealthValueLabel(String value) {
+        healthValueLabel.setText(value);
+    }
+
+    public void setGoldValueLabel(String value) {
+        goldValueLabel.setText(value);
     }
 
     public boolean isInputAllowed() {
@@ -136,7 +187,7 @@ public class CommandPrompt extends JFrame {
         int wordCount = 0;
         String[] splitLine = line.split(" ");
         for (String s : splitLine) {
-            if (lineLength + wordCount + s.length() >= 85) {
+            if (lineLength + wordCount + s.length() >= MAX_CHARACTERS_PER_LINE) {
                 displayArea.append("\n");
                 lineLength = 0;
                 wordCount = 0;
@@ -157,7 +208,7 @@ public class CommandPrompt extends JFrame {
         int wordCount = 0;
         String[] splitLine = line.split(" ");
         for (String s : splitLine) {
-            if (lineLength + wordCount + s.length() >= 85) {
+            if (lineLength + wordCount + s.length() >= MAX_CHARACTERS_PER_LINE) {
                 displayArea.append("\n");
                 lineLength = 0;
                 wordCount = 0;
@@ -231,10 +282,14 @@ public class CommandPrompt extends JFrame {
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        mainPanel.setAlignmentX(0.0f);
+        mainPanel.setAlignmentY(0.0f);
         mainPanel.setBackground(new Color(-12828863));
+        mainPanel.setEnabled(true);
         mainPanel.setForeground(new Color(-12828863));
-        mainPanel.setMinimumSize(new Dimension(700, 400));
-        mainPanel.setPreferredSize(new Dimension(700, 400));
+        mainPanel.setMinimumSize(new Dimension(695, 395));
+        mainPanel.setPreferredSize(new Dimension(695, 395));
+        mainPanel.setVisible(true);
         outerSplitPane = new JSplitPane();
         outerSplitPane.setContinuousLayout(true);
         outerSplitPane.setDividerLocation(25);
@@ -275,18 +330,32 @@ public class CommandPrompt extends JFrame {
         goldValueLabel = new JLabel();
         goldValueLabel.setText("0");
         infoBarLeftPane.add(goldValueLabel);
+        final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+        infoBarLeftPane.add(spacer1);
+        experienceProgressBar = new JProgressBar();
+        experienceProgressBar.setBorderPainted(true);
+        experienceProgressBar.setIndeterminate(false);
+        experienceProgressBar.setOrientation(0);
+        experienceProgressBar.setPreferredSize(new Dimension(225, 20));
+        experienceProgressBar.setString("Experience 0/100");
+        experienceProgressBar.setStringPainted(true);
+        experienceProgressBar.setValue(0);
+        infoBarLeftPane.add(experienceProgressBar);
         infoBarRightPane = new JPanel();
         infoBarRightPane.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 0));
         infoBarRightPane.setMinimumSize(new Dimension(350, 25));
         infoBarRightPane.setPreferredSize(new Dimension(350, 25));
         infoBarSplitPane.setRightComponent(infoBarRightPane);
         characterLabel = new JLabel();
+        characterLabel.setAlignmentX(0.0f);
         characterLabel.setText("Character");
         infoBarRightPane.add(characterLabel);
         inventoryLabel = new JLabel();
+        inventoryLabel.setAlignmentX(0.0f);
         inventoryLabel.setText("Inventory");
         infoBarRightPane.add(inventoryLabel);
         menuLabel = new JLabel();
+        menuLabel.setAlignmentX(0.0f);
         menuLabel.setText("Menu");
         infoBarRightPane.add(menuLabel);
         innerSplitPane = new JSplitPane();
@@ -299,10 +368,14 @@ public class CommandPrompt extends JFrame {
         innerSplitPane.setPreferredSize(new Dimension(700, 375));
         outerSplitPane.setRightComponent(innerSplitPane);
         cmdAreaScrollPane = new JScrollPane();
+        cmdAreaScrollPane.setAlignmentX(0.0f);
+        cmdAreaScrollPane.setAlignmentY(0.0f);
         cmdAreaScrollPane.setHorizontalScrollBarPolicy(31);
         cmdAreaScrollPane.setVerticalScrollBarPolicy(21);
         innerSplitPane.setRightComponent(cmdAreaScrollPane);
         cmdArea = new JTextField();
+        cmdArea.setAlignmentX(0.0f);
+        cmdArea.setAlignmentY(0.0f);
         cmdArea.setAutoscrolls(false);
         cmdArea.setBackground(new Color(-16777216));
         cmdArea.setCaretColor(new Color(-8212805));
@@ -312,11 +385,15 @@ public class CommandPrompt extends JFrame {
         cmdArea.setPreferredSize(new Dimension(700, 25));
         cmdAreaScrollPane.setViewportView(cmdArea);
         displayAreaScrollPane = new JScrollPane();
+        displayAreaScrollPane.setAlignmentX(0.0f);
+        displayAreaScrollPane.setAlignmentY(0.0f);
         displayAreaScrollPane.setHorizontalScrollBarPolicy(31);
         displayAreaScrollPane.setMinimumSize(new Dimension(900, 350));
         displayAreaScrollPane.setVerticalScrollBarPolicy(21);
         innerSplitPane.setLeftComponent(displayAreaScrollPane);
         displayArea = new JTextArea();
+        displayArea.setAlignmentX(0.0f);
+        displayArea.setAlignmentY(0.0f);
         displayArea.setAutoscrolls(true);
         displayArea.setBackground(new Color(-16777216));
         displayArea.setCaretColor(new Color(-8212805));

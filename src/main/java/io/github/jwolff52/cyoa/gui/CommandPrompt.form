@@ -5,10 +5,14 @@
       <xy x="220" y="20" width="700" height="400"/>
     </constraints>
     <properties>
+      <alignmentX value="0.0"/>
+      <alignmentY value="0.0"/>
       <background color="-12828863"/>
+      <enabled value="true"/>
       <foreground color="-12828863"/>
-      <minimumSize width="700" height="400"/>
-      <preferredSize width="700" height="400"/>
+      <minimumSize width="695" height="395"/>
+      <preferredSize width="695" height="395"/>
+      <visible value="true"/>
     </properties>
     <border type="none"/>
     <children>
@@ -82,6 +86,21 @@
                           <text value="0"/>
                         </properties>
                       </component>
+                      <hspacer id="7505a">
+                        <constraints/>
+                      </hspacer>
+                      <component id="57cca" class="javax.swing.JProgressBar" binding="experienceProgressBar">
+                        <constraints/>
+                        <properties>
+                          <borderPainted value="true"/>
+                          <indeterminate value="false"/>
+                          <orientation value="0"/>
+                          <preferredSize width="225" height="20"/>
+                          <string value="Experience 0/100"/>
+                          <stringPainted value="true"/>
+                          <value value="0"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
                   <grid id="9e378" binding="infoBarRightPane" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="2">
@@ -97,18 +116,21 @@
                       <component id="fd477" class="javax.swing.JLabel" binding="characterLabel">
                         <constraints/>
                         <properties>
+                          <alignmentX value="0.0"/>
                           <text value="Character"/>
                         </properties>
                       </component>
                       <component id="c4477" class="javax.swing.JLabel" binding="inventoryLabel">
                         <constraints/>
                         <properties>
+                          <alignmentX value="0.0"/>
                           <text value="Inventory"/>
                         </properties>
                       </component>
                       <component id="2e3b0" class="javax.swing.JLabel" binding="menuLabel">
                         <constraints/>
                         <properties>
+                          <alignmentX value="0.0"/>
                           <text value="Menu"/>
                         </properties>
                       </component>
@@ -138,6 +160,8 @@
                   <splitpane position="right"/>
                 </constraints>
                 <properties>
+                  <alignmentX value="0.0"/>
+                  <alignmentY value="0.0"/>
                   <horizontalScrollBarPolicy value="31"/>
                   <verticalScrollBarPolicy value="21"/>
                 </properties>
@@ -146,6 +170,8 @@
                   <component id="3d7a" class="javax.swing.JTextField" binding="cmdArea">
                     <constraints/>
                     <properties>
+                      <alignmentX value="0.0"/>
+                      <alignmentY value="0.0"/>
                       <autoscrolls value="false"/>
                       <background color="-16777216"/>
                       <caretColor color="-8212805"/>
@@ -162,6 +188,8 @@
                   <splitpane position="left"/>
                 </constraints>
                 <properties>
+                  <alignmentX value="0.0"/>
+                  <alignmentY value="0.0"/>
                   <horizontalScrollBarPolicy value="31"/>
                   <minimumSize width="900" height="350"/>
                   <verticalScrollBarPolicy value="21"/>
@@ -171,6 +199,8 @@
                   <component id="968a" class="javax.swing.JTextArea" binding="displayArea">
                     <constraints/>
                     <properties>
+                      <alignmentX value="0.0"/>
+                      <alignmentY value="0.0"/>
                       <autoscrolls value="true"/>
                       <background color="-16777216"/>
                       <caretColor color="-8212805"/>
