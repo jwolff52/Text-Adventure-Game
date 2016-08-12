@@ -32,7 +32,7 @@ public class CommandPrompt extends CFrame {
     private JLabel goldLabel;
     private JLabel healthValueLabel;
     private JLabel goldValueLabel;
-    private JLabel characterLabel;
+    private JLabel attributesLabel;
     private JProgressBar experienceProgressBar;
 
     private boolean inputAllowed, screenLocked;
@@ -71,7 +71,7 @@ public class CommandPrompt extends CFrame {
         healthValueLabel.setForeground(cmdArea.getForeground());
         inventoryLabel.setForeground(cmdArea.getForeground());
         menuLabel.setForeground(cmdArea.getForeground());
-        characterLabel.setForeground(cmdArea.getForeground());
+        attributesLabel.setForeground(cmdArea.getForeground());
         experienceProgressBar.setBackground(Color.BLACK);
         experienceProgressBar.setForeground(cmdArea.getForeground());
         pack();
@@ -99,13 +99,13 @@ public class CommandPrompt extends CFrame {
             }
         });
 
-        characterLabel.addMouseListener(new MouseAdapter() {
+        attributesLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 if (e.getButton() == MouseEvent.BUTTON1) {
-                    //TODO: Open Character Screen
-                    System.out.println("Character");
+                    Main.guiController.getAttributeDialog().setVisible(true);
+                    System.out.println("Attributes");
                 }
             }
         });
@@ -115,7 +115,7 @@ public class CommandPrompt extends CFrame {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 if (e.getButton() == MouseEvent.BUTTON1) {
-                    //TODO: Open Inventory
+                    Main.guiController.getInventoryDialog().setVisible(true);
                     System.out.println("Inventory");
                 }
             }
@@ -126,7 +126,7 @@ public class CommandPrompt extends CFrame {
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 if (e.getButton() == MouseEvent.BUTTON1) {
-                    //TODO: Open Menu
+                    Main.guiController.getMenuDialog().setVisible(true);
                     System.out.println("Menu");
                 }
             }
@@ -346,10 +346,10 @@ public class CommandPrompt extends CFrame {
         infoBarRightPane.setMinimumSize(new Dimension(350, 25));
         infoBarRightPane.setPreferredSize(new Dimension(350, 25));
         infoBarSplitPane.setRightComponent(infoBarRightPane);
-        characterLabel = new JLabel();
-        characterLabel.setAlignmentX(0.0f);
-        characterLabel.setText("Character");
-        infoBarRightPane.add(characterLabel);
+        attributesLabel = new JLabel();
+        attributesLabel.setAlignmentX(0.0f);
+        attributesLabel.setText("Attributes");
+        infoBarRightPane.add(attributesLabel);
         inventoryLabel = new JLabel();
         inventoryLabel.setAlignmentX(0.0f);
         inventoryLabel.setText("Inventory");

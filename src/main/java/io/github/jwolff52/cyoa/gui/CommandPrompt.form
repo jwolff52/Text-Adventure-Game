@@ -113,11 +113,11 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="fd477" class="javax.swing.JLabel" binding="characterLabel">
+                      <component id="fd477" class="javax.swing.JLabel" binding="attributesLabel">
                         <constraints/>
                         <properties>
                           <alignmentX value="0.0"/>
-                          <text value="Character"/>
+                          <text value="Attributes"/>
                         </properties>
                       </component>
                       <component id="c4477" class="javax.swing.JLabel" binding="inventoryLabel">
